@@ -15,3 +15,4 @@ db/schema.rb
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+config/*
