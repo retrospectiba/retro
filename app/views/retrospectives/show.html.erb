@@ -16,8 +16,13 @@
 <div class="row-fluid">
   <div class="span12">
     <div class="page-header">
-      <h3><%= @retrospective.name %></h3>
-      <%#= link_to "Enviar", retrospective_send_email_path(@retrospective), :role => "button", :class => "btn btn-small btn-primary", "data-toggle" =>"modal" %>
+      <div class="sprint-header">
+        <h3><%= @retrospective.name %></h3>
+        <%= link_to retrospective_send_email_path(@retrospective), :role => "button", :class => "btn btn-inverse btn-small btn-primary", "data-toggle" =>"modal" do %>
+          <span class="icon-envelope"></span>
+          Enviar
+        <% end %>
+      </div>
       <% if @retrospective.start_at.present? %>
         <b>Inicio</b> <em><%= best_in_place @retrospective, :start_at, type: :date, display_with: lambda{|value| l value } %></em>
         <b>Termino</b> <em><%= best_in_place @retrospective, :finish_at, type: :date, display_with: lambda{|value| l value } %></em>
@@ -26,7 +31,7 @@
   </div><!--/div:span5 -->
 </div><!-- div:row -->
 <%= render 'list_worst' %>
-<div class="row-fluid">
+<div class="row-fluid list-goods-and-bads">
   <div class="span6">
     <h4><a href="#addBom" role="button" class="btn btn-small btn-success" data-toggle="modal">Bom</a></h4>
     <%= render 'list_goods' %>
