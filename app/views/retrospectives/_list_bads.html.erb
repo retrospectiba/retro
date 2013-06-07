@@ -12,18 +12,11 @@
             <td class="bad-desc"><%= best_in_place bad, :description, type: :input, path: retrospective_bad_path(@retrospective, bad) %></td>
             <td class="bad-action"><%= best_in_place bad, :action, type: :input, path: retrospective_bad_path(@retrospective, bad) %></td>
             <td id="<%= item_votes_id(bad) %>" class="votes"><%= bad.votes %></td>
+            <td><%= link_to '', vote_up_url(model: bad.class.to_s.downcase, id: bad.id), remote: true, method: :post, class: 'icon-thumbs-up' %></td>
+            <td><%= link_to '', vote_down_url(model: bad.class.to_s.downcase, id: bad.id), remote: true, method: :delete, class: 'icon-thumbs-down' %></td>
             <td>
-              <div class="btn-group">
-                <button class="btn btn-small dropdown-toggle" data-toggle="dropdown">Ações <span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                  <li><%= link_to 'Gostei', vote_up_url(model: bad.class.to_s.downcase, id: bad.id), remote: true, method: :post %></li>
-                  <li><%= link_to 'Não Gostei', vote_down_url(model: bad.class.to_s.downcase, id: bad.id), remote: true, method: :delete %></li>
-                  <li>
-                    <input type="hidden" value="<%= bad.id %>" />
-                    <a href="#delete-bad" data-toggle="modal" class="btn-delete-bad">Excluir</a>
-                  </li>
-                </ul>
-              </div>
+              <input type="hidden" value="<%= bad.id %>" />
+              <%= link_to '', '#delete-bad', class: 'icon-remove btn-delete-bad', 'data-toggle' => 'modal' %>
             </td>
           </tr>
         <% end %>

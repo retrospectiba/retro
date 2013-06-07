@@ -62,3 +62,11 @@ td.votes      { font-weight: bold; }
 .fork-me { position: absolute; top: 0; left: 0; border: 0; }
 
 .field .span3 { margin-left: 0; }
+
+.list-goods-and-bads .icon-remove,
+.list-goods-and-bads .icon-thumbs-down,
+.list-goods-and-bads .icon-thumbs-up { color: #333; text-decoration: none; }
+
+.sprint-header { position: relative; }
+.sprint-header h3 { display: inline-block; }
+.sprint-header a  { display: inline-block; position: absolute; top: 15px; right: 0; }
