@@ -2,10 +2,16 @@
 require 'spec_helper'
 
 describe RetrospectivesController do
-
-  before(:each) { controller.session[:user] = FactoryGirl.build(:user) }
-
   describe "POST #create" do
+    let(:user) { FactoryGirl.create(:user) }
+
+    before do
+      controller.session[:user] = user
+      controller.session[:user_id] = user.id
+    end
+
+    after { User.delete_all }
+
     subject { post :create, retrospective: retrospective  }
 
     describe "with invalid attributes" do
@@ -34,8 +40,14 @@ describe RetrospectivesController do
   end
 
   describe 'GET #send_email' do
+    let(:user) { FactoryGirl.create(:user) }
+
+    before { controller.session[:user_id] = user.id }
+
+    after { User.delete_all }
+
     subject { get "send_email", :id => retrospective.id  }
-    let(:retrospective) { FactoryGirl.create(:retrospective, :user => FactoryGirl.create(:user)) }
+    let(:retrospective) { FactoryGirl.create(:retrospective, :user => user ) }
 
     context "when fails to send an email" do
       before do

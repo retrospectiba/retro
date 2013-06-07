@@ -5,23 +5,27 @@ describe UsersController do
 
   def valid_attributes
     {
-      :email => "zekitow@gmail.com",
-      :name => "José Ribeiro",
-      :password => "123456",
-      :password_confirmation => "123456"
+      :email    => "zekitow@gmail.com",
+      :name     => "José Ribeiro",
+      :password => "123456"
     }
   end
 
-  before(:each) do
+  before do
     user = User.new(valid_attributes)
     controller.session[:user_id] = user.id
   end
 
+  after { session[:user_id] = nil }
+
   describe "GET index" do
     it "assigns logged user" do
       user = User.create! valid_attributes
+      session[:user_id] = user.id
+      users = User.all
       get :index, {}
       assigns(:user).should_not be_nil
+      assigns(:users).should_not be_nil
     end
   end
 
@@ -35,6 +39,7 @@ describe UsersController do
   describe "GET edit" do
     it "assigns the requested user as @user" do
       user = User.create! valid_attributes
+      session[:user_id] = user.id
       get :edit, {:id => user.to_param}
       assigns(:user).should eq(user)
     end
@@ -81,18 +86,21 @@ describe UsersController do
     describe "with valid params" do
       it "updates the requested user" do
         user = User.create! valid_attributes
+        session[:user_id] = user.id
         User.any_instance.should_receive(:save)
         put :update, {:id => user.to_param, :user => {'email' => user.email, 'name' => user.name }}
       end
 
       it "assigns the requested user as @user" do
         user = User.create! valid_attributes
+        session[:user_id] = user.id
         put :update, {:id => user.to_param, :user => valid_attributes}
         assigns(:user).should eq(user)
       end
 
       it "redirects to the user" do
         user = User.create! valid_attributes
+        session[:user_id] = user.id
         put :update, {:id => user.to_param, :user => valid_attributes}
         response.should redirect_to '/retrospectives'
       end
@@ -101,6 +109,7 @@ describe UsersController do
     describe "with invalid params" do
       it "assigns the user as @user" do
         user = User.create! valid_attributes
+        session[:user_id] = user.id
         # Trigger the behavior that occurs when invalid params are submitted
         User.any_instance.stub(:save).and_return(false)
         put :update, {:id => user.to_param, :user => {}}
@@ -109,6 +118,7 @@ describe UsersController do
 
       it "re-renders the 'edit' template" do
         user = User.create! valid_attributes
+        session[:user_id] = user.id
         # Trigger the behavior that occurs when invalid params are submitted
         User.any_instance.stub(:save).and_return(false)
         put :update, {:id => user.to_param, :user => {}}
@@ -120,6 +130,7 @@ describe UsersController do
   describe "GET password" do
     it "assigns the requested user as @user" do
       user = User.create! valid_attributes
+      session[:user_id] = user.id
       get :password, {}
       user.id.should eq(controller.session[:user_id])
     end
@@ -131,12 +142,14 @@ describe UsersController do
 
       it "updates the requested user" do
         user = User.create! valid_attributes
+        session[:user_id] = user.id
         User.any_instance.should_receive(:save)
         put :password_update, {:id => user.to_param, :user => user_request }
       end
 
       it "redirects to users" do
         user = User.create! valid_attributes
+        session[:user_id] = user.id
         User.any_instance.should_receive(:save).and_return(true)
         put :password_update, {:id => user.to_param, :user => user_request }
         response.should redirect_to("/retrospectives")
@@ -148,6 +161,7 @@ describe UsersController do
 
       it "re-render password" do
         user = User.create! valid_attributes
+        session[:user_id] = user.id
         User.any_instance.stub(:save).and_return(false)
         put :password_update, {:id => user.to_param, :user => user_bad_request }
         response.should render_template("password")
@@ -155,6 +169,7 @@ describe UsersController do
 
       it "re-render password when password and confirmation were different" do
         user = User.create! valid_attributes
+        session[:user_id] = user.id
         User.any_instance.stub(:save).and_return(true)
         put :password_update, {:id => user.to_param, :user => user_bad_request }
         response.should render_template("password")
