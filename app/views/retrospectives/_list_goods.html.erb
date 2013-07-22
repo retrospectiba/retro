@@ -1,0 +1,23 @@
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Descrição</th>
+          <th width="20"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @retrospective.goods.each do |good| %>
+          <tr class="good" id="good-<%= good.id %>">
+            <td class="good-desc"><%= best_in_place good, :description, type: :input, path: retrospective_good_path(@retrospective, good) %></td>
+            <td id="<%= item_votes_id(good) %>"class="votes"><%= good.votes %></td>
+            <td><%= link_to '', vote_up_url(model: good.class.to_s.downcase, id: good.id), remote: true, method: :post, class: 'icon-thumbs-up' %></td>
+            <td><%= link_to '', vote_down_url(model: good.class.to_s.downcase, id: good.id), remote: true, method: :delete, class: 'icon-thumbs-down' %></td>
+            <td>
+              <input type="hidden" value="<%= good.id %>" />
+              <%= link_to '', '#delete-good', class: 'icon-remove btn-delete-good', 'data-toggle' => 'modal' %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+

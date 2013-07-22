@@ -1,0 +1,42 @@
+<%= form_for @retrospective do |f| %>
+    <div id="newRetro" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h2>Nova Retrospectiva</h2>
+    </div>
+    <div class="modal-body">
+        <% if @retrospective.errors.any? %>
+          <div class="alert alert-error">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <h4>Atenção!</h4>
+            Os seguintes erros foram encontrados:
+            <ul>
+              <% @retrospective.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <div class="field">
+          <%= f.text_field :name, class: "span5", value: "Sprint# #{@retrospectives.count + 1}" %>
+        </div>
+        <div class="field">
+          <span class="span3">Data inicio</span>
+          <span class="span2">Data final</span>
+        </div>
+        <div class="field">
+          <div class="span3 input-append">
+            <%= f.text_field :start_at, class: "input-medium date", readonly: true %>
+            <button class="btn_start_at btn" type="button"><span class="icon-calendar"></span></button>
+          </div>
+          <div class="span2 input-append">
+            <%= f.text_field :finish_at, class: "input-medium date", readonly: true %>
+            <button class="btn_finish_at btn" type="button"><span class="icon-calendar"></span></button>
+          </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+      <%= f.submit "Salvar", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

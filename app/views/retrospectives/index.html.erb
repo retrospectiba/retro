@@ -1,0 +1,42 @@
+<ul class="breadcrumb">
+  <li><%= link_to @current_user.name, retrospectives_path %> <span class="divider">/</span></li>
+  <li><b>Retrospectivas</b></li>
+</ul>
+<div class="row-fluid">
+  <div class="span6">
+    <div class="page-header">
+      <h3>Retrospectivas</h3>
+    </div>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Bom</th>
+          <th>Ruim</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @retrospectives.each do |retro| %>
+          <tr>
+            <td><%= link_to "#{retro.name}", retrospective_path(retro)  %></td>
+            <td><%= retro.try(:goods).try(:count) %></td>
+            <td><%= retro.try(:bads).try(:count) %></td>
+            <% if @current_user.retrospectives.include?(retro) %>
+              <td><%= link_to "Participantes", new_retrospective_invitations_path(:retrospective_id => retro.id), :class => 'btn btn-small' %></td>
+            <% else %>
+              <td>Convidado por <%= retro.user.name %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <a href="#newRetro" role="button" class="btn btn-inverse btn-large" data-toggle="modal">Nova Retrospectiva</a>
+    <br />
+
+  </div><!-- div:span6 -->
+  <div class="span5">
+    <img src="/assets/moe.png"  title="<%= @current_user.name %>" alt="Ralph Steadman Artwork"/>
+  </div><!-- div:span6 -->
+</div><!-- div:row -->
+
+<%= render 'new_retro' %>

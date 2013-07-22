@@ -1,0 +1,48 @@
+<div style="background: url(http://www.retrospectiba.com/assets/bg-grey-wood.jpg) repeat #333; padding: 15px">
+  <div style="background-color: #fff; margin: 0 auto; padding: 10px; border-radius: 10px; width: 920px;">
+    <div style="font-family: Helvetica Neue, Helvetica, Arial, sans-serif; font-size: 13px; color: #333; border-bottom: 1px solid #eeeeee; padding-bottom: 10px; margin-bottom: 15px;">
+      <h3 style="font-size: 20px; margin: 10 0 0 0; font-weight: bold"><%= @retrospective.name %></h3>
+      <% if @retrospective.start_at.present? %>
+        <b>Inicio</b> <em><%= l @retrospective.start_at %></em>
+        <b>Termino</b> <em><%= l @retrospective.finish_at %></em>
+      <% end %>
+    </div>
+
+    <div style="font-family: Helvetica Neue, Helvetica, Arial, sans-serif">
+      <table style="font-size: 14px; color: #333; margin-bottom: 10px; display: inline; margin-right: 10px" width="450" cellspacing="0">
+        <thead>
+          <tr height="30">
+            <th width="430" align="left">Descrição</th>
+            <th width="20"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @retrospective.goods.each do |good| %>
+            <tr height="30" style="background-color: #90EE90">
+              <td style="border-top: 1px solid #dddddd; word-wrap: break-word"><%= good.description %></td>
+              <td style="border-top: 1px solid #dddddd"><b><%= good.votes %></b></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <table style="font-size: 14px; color: #333; margin-bottom: 10px; display: inline" width="450" cellspacing="0">
+        <thead>
+          <tr height="30">
+            <th width="215" align="left">Descrição</th>
+            <th width="215" align="left">Ação</th>
+            <th width="20"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @retrospective.bads.each do |bad| %>
+            <tr height="30" style="background-color: #FFB6C1">
+              <td style="border-top: 1px solid #dddddd; word-wrap: break-word"><%= bad.description %></td>
+              <td style="border-top: 1px solid #dddddd; word-wrap: break-word"><%= bad.action %></td>
+              <td style="border-top: 1px solid #dddddd"><b><%= bad.votes %></b></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

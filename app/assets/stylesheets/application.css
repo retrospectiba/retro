@@ -1,0 +1,72 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+* { outline: none; }
+a.brand.title {color:white;text-transform:uppercase;font-weight:700;}
+body, body#home { background:url('/assets/bg-grey-wood.jpg') repeat #333;}
+
+footer {color:#DDD;text-align:center}
+body#home a {color: #08C;text-decoration: none;background:transparent;}
+body#home .label-important a, .label-important a {color: white }
+
+.content {background-color:white;padding: 30px;webkit-border-radius: 6px;-moz-border-radius: 6px;border-radius: 6px;-webkit-border-radius: 6px;-moz-border-radius: 6px;}
+.center {text-align:center}
+.right  {text-align:right}
+.left   {text-align:left}
+.field_with_errors textarea,
+.field_with_errors input[type="text"],
+.field_with_errors input[type="password"],
+.field_with_errors input[type="datetime"],
+.field_with_errors input[type="datetime-local"],
+.field_with_errors input[type="date"],
+.field_with_errors input[type="month"],
+.field_with_errors input[type="time"],
+.field_with_errors input[type="week"],
+.field_with_errors input[type="number"],
+.field_with_errors input[type="email"],
+.field_with_errors input[type="url"],
+.field_with_errors input[type="search"],
+.field_with_errors input[type="tel"],
+.field_with_errors input[type="color"]{
+  border-color: rgba(217, 47, 47, 0.8);
+  outline: 0;
+  outline: thin dotted \9;
+  /* IE6-9 */
+
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(217, 47, 47, 0.6);
+     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(217, 47, 47, 0.6);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(217, 47, 47, 0.6);
+}
+div.field,
+div.actions {
+  margin-bottom: 10px;
+}
+tr.warning { background-color: #FFFF99 }
+tr.bad     { background-color: #FFB6C1 }
+tr.good    { background-color: #90EE90 }
+
+td.good-desc  { width: 410px; word-wrap: break-word; }
+td.bad-desc   { max-width: 300px; word-wrap: break-word; min-width: 225px; }
+td.bad-action { width: 220px; word-wrap: break-word; }
+td.votes      { font-weight: bold; }
+.fork-me { position: absolute; top: 0; left: 0; border: 0; }
+
+.field .span3 { margin-left: 0; }
+
+.list-goods-and-bads .icon-remove,
+.list-goods-and-bads .icon-thumbs-down,
+.list-goods-and-bads .icon-thumbs-up { color: #333; text-decoration: none; }
+
+.sprint-header { position: relative; }
+.sprint-header h3 { display: inline-block; }
+.sprint-header a  { display: inline-block; position: absolute; top: 15px; right: 0; }

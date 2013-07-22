@@ -1,0 +1,25 @@
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Descrição</th>
+          <th>Ação</th>
+          <th width="20"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @retrospective.bads.each do |bad| %>
+          <tr class="bad" id="bad-<%= bad.id %>">
+            <td class="bad-desc"><%= best_in_place bad, :description, type: :input, path: retrospective_bad_path(@retrospective, bad) %></td>
+            <td class="bad-action"><%= best_in_place bad, :action, type: :input, path: retrospective_bad_path(@retrospective, bad) %></td>
+            <td id="<%= item_votes_id(bad) %>" class="votes"><%= bad.votes %></td>
+            <td><%= link_to '', vote_up_url(model: bad.class.to_s.downcase, id: bad.id), remote: true, method: :post, class: 'icon-thumbs-up' %></td>
+            <td><%= link_to '', vote_down_url(model: bad.class.to_s.downcase, id: bad.id), remote: true, method: :delete, class: 'icon-thumbs-down' %></td>
+            <td>
+              <input type="hidden" value="<%= bad.id %>" />
+              <%= link_to '', '#delete-bad', class: 'icon-remove btn-delete-bad', 'data-toggle' => 'modal' %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+

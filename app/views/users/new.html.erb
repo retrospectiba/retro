@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fosformol</title>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-40782711-1', 'retrospectiba.com');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body id="home">
+    <div class="container">
+      <div class="hero-unit">
+        <div class="page-header">
+          <div class="row-fluid">
+            <ul class="breadcrumb">
+              <li><%= link_to 'Retrospectiba', root_path, class: "btn btn-link" %><span class="divider">/</span></li>
+              <li><b>Novo Usuário</b></li>
+            </ul>
+            <div class="span5">
+              <img src="/assets/homer-smart.png"/>
+            </div><!-- /div:span5 -->
+            <div class="span6">
+              <h3>Cadastre-se.</h3>
+              <legend></legend>
+              <%= render 'form' %>
+              <div class="controls">
+                <span class="help-block">Você <span class="label label-important">não</span> receberá um e-mail para ativar sua conta.</span>
+              </div><!-- div.controls -->
+            </div><!-- /div:span2 -->
+          </div><!-- div:page-header -->
+        </div><!-- div.row-fluid -->
+      </div><!--/div:hero-unit-->
+    </div><!-- /div:container-->
+    <footer>
+      <div class="container">
+        <p>
+          <span class="label label-info">www.retrospectiba.com</span>
+          <span class="label label-important"><a href="https://github.com/zekitow/retro/network/members" target="_blank">contribuidores</a></span>
+        </p>
+      </div><!-- /div:container-->
+    </footer>
+  </body>
+</html>
