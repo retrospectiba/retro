@@ -63,6 +63,4 @@ namespace :rake do
 end
 
 after "deploy:finalize_update", "deploy:relink_log"
-after "deploy:update", "deploy:copy_config_files"
 after "deploy:update", "deploy:cleanup"
-after "deploy:restart", "deploy:restart_workers"
