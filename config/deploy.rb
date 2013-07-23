@@ -21,7 +21,7 @@ set :use_sudo, false
 set :port, 5022
 set :deploy_branch, ENV['BRANCH'] if ENV['BRANCH']
 set :bundle_flags, "--quiet"
-set :user, "dls"
+set :user, "retro"
 set :deploy_to,     "/abd/app/#{application}"
 set :logs_path,     "/data_logs/#{application}/$HOSTNAME"
 set :image_path,    "/abd/app/#{application}/images"
