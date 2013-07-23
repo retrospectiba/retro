@@ -1,26 +1,24 @@
-defaults: &defaults
-  adapter: mysql2
-  encoding: utf8
-  reconnect: false
-  database: retro
-  username: root
-  password: root
+mysql:
+  development:
+    adapter: mysql2
+    database: retro_development
+    username: root
+    encoding: utf8
+    password:
+    host: localhost
 
-development:
-  <<: *defaults
-  database: retro_dev
+  production:
+    adapter: mysql2
+    database: retro_production
+    username: retro
+    encoding: utf8
+    password: retro
+    host: localhost
 
-test:
-  <<: *defaults
-  database: retro_test
-
-production:
-  <<: *defaults
-  encoding: utf8
-  database: <%=ENV['OPENSHIFT_APP_NAME']%>
-  pool: 5
-  host: <%=ENV['OPENSHIFT_MYSQL_DB_HOST']%>
-  port: <%=ENV['OPENSHIFT_MYSQL_DB_PORT']%>
-  username: <%=ENV['OPENSHIFT_MYSQL_DB_USERNAME']%>
-  password: <%=ENV['OPENSHIFT_MYSQL_DB_PASSWORD']%>
-  socket: <%=ENV['OPENSHIFT_MYSQL_DB_SOCKET']%>
+  test:
+    adapter: mysql2
+    database: retro_test
+    username: retro
+    encoding: utf8
+    password: retro
+    host: localhost
