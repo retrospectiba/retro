@@ -7,7 +7,9 @@ RetroRails::Application.routes.draw do
   resources :users
 
   resources :retrospectives do
-    resources :goods     , :controller => "retrospectives/goods"
+    resources :goods     , :controller => "retrospectives/goods" do
+      collection { get :similar_retro_items }
+    end
     resources :bads      , :controller => "retrospectives/bads"
     resources :invitations, :controller => "retrospectives/invitations"
   end
