@@ -1,0 +1,17 @@
+<li class="legend">Itens similares:</li>
+<% @retro_items.each do |item, quantity| %>
+  <% class_name = item.class.to_s.downcase %>
+  <li class="item">
+    <%= link_to '#', class: 'icon-thumbs-up vote' do %>
+      <br />
+      <b><%= item.votes %></b>
+    <% end %>
+    <%= link_to '#', class: 'description' do %>
+      <%= item.description %>
+      <br />
+      <% if class_name == 'bad' %>
+        <small><%= item.action %></small>
+      <% end %>
+    <% end %>
+  </li>
+<% end %>

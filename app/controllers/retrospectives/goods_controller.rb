@@ -29,14 +29,18 @@ class Retrospectives::GoodsController < ApplicationController
   end
 
   def similar_retro_items
-    search_words = params[:q].split(" ").select {|word| word.size > 2}
-    results_array = []
+    search_words  = params[:q].split(' ').select {|word| word.size > 2}.uniq
+    results_array = {}
 
-    search_words.each do |sw|
-      Good.where('retrospective_id = ? AND description LIKE (?)', params[:retrospective_id], "%#{sw}%").collect { |result| results_array << result }
+    search_words.each do |word|
+      Good.where('retrospective_id = ? AND description LIKE (?)', params[:retrospective_id], "%#{word}%").collect do |item|
+        results_array[item] = results_array[item].to_i + 1
+      end
     end
-    retro_items  = results_array.inject(Hash.new(0)) { |h, e| h[e] += 1 ; h }.sort {|x,y| y <=>x}
 
-    render json: retro_items
+    @retro_items = results_array.sort_by {|item, quantity| quantity}.reverse
+
+    head :not_found and return if @retro_items.blank?
+    render template: 'retrospectives/similar_retro_items', layout: false
   end
 end

@@ -70,3 +70,9 @@ td.votes      { font-weight: bold; }
 .sprint-header { position: relative; }
 .sprint-header h3 { display: inline-block; }
 .sprint-header a  { display: inline-block; position: absolute; top: 15px; right: 0; }
+
+.similar { width: 450px; max-height: 215px; overflow-y: scroll; display: none; }
+.similar .nav { margin-bottom: 0px; }
+.similar li .vote { width: 30px; display: inline-block; }
+.similar li .description { width: 77%; display: inline-block; vertical-align: top; }
+.similar li .description small { color: #333; }
