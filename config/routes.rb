@@ -4,7 +4,9 @@ RetroRails::Application.routes.draw do
 
   root :to => "home#index"
 
-  resources :users
+  resources :users do
+    resources :retrospectives
+  end
 
   resources :retrospectives do
     resources :goods     , :controller => "retrospectives/goods" do
@@ -13,7 +15,7 @@ RetroRails::Application.routes.draw do
     resources :bads      , :controller => "retrospectives/bads" do
       collection { get :similar_retro_items }
     end
-    resources :invitations, :controller => "retrospectives/invitations"
+    resource :invitations, :controller => "retrospectives/invitations"
   end
 
   get "/retrospectives/:retrospective_id/bads/:id/keep" => "retrospectives/bads#keep", as: :retrospective_bad_keeps
