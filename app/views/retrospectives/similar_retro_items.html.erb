@@ -6,7 +6,7 @@
       <br />
       <b><%= item.votes %></b>
     <% end %>
-    <%= link_to '#', class: 'description' do %>
+    <%= link_to "##{class_name}-#{item.id}", class: 'description' do %>
       <%= item.description %>
       <br />
       <% if class_name == 'bad' %>
