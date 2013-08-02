@@ -4,19 +4,16 @@ RetroRails::Application.routes.draw do
 
   root :to => "home#index"
 
-  resources :retrospectives
-  resources :users do
-    resources :retrospectives
+  resources :users
+
+  resources :retrospectives do
+    resources :goods     , :controller => "retrospectives/goods"
+    resources :bads      , :controller => "retrospectives/bads"
+    resources :invitations, :controller => "retrospectives/invitations"
   end
 
   get "/retrospectives/:retrospective_id/bads/:id/keep" => "retrospectives/bads#keep", as: :retrospective_bad_keeps
   get "/retrospectives/:retrospective_id/bads/:id/good" => "retrospectives/bads#to_good", as: :retrospective_bad_to_good
-
-  resources :retrospectives do
-    resources :goods     , :controller => "Retrospectives::goods"
-    resources :bads      , :controller => "Retrospectives::bads"
-    resource :invitations, :controller => "Retrospectives::invitations"
-  end
 
   get "/retrospectives/send_email/:id" => "retrospectives#send_email", as: :retrospective_send_email
   get "/retrospectives/preview_email/:id" => "retrospectives#preview_email", as: :retrospective_preview_email
