@@ -3,7 +3,7 @@ class Retrospectives::BadsController < ApplicationController
 
   def create
     bad = Bad.new(params[:bad])
-    if bad.balid?
+    if bad.valid?
       bad.save
     else
       flash[:error] = bad.errors.full_messages
