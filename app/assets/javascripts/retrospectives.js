@@ -1,7 +1,7 @@
 $(function(){
+  var enabled = (typeof(enabled) == 'boolean' ? enabled : true);
   $('.modal').find('.description').on('keyup', function(){
     field   = $(this);
-    enabled = (typeof(enabled) == 'boolean' ? enabled : true);
     if(!enabled && field.val() == '') enabled = true;
 
     if(field.val().length > 2 && enabled) {
@@ -39,5 +39,13 @@ $(function(){
     } else if(field.val().length <= 2) {
       $('.similar').slideUp();
     }
+
+    $('.modal').on('hidden', function(){
+      enabled = true;
+      $(this).find('input[type=text]').val('');
+      similars = $('.similar');
+      similars.find('ul').empty();
+      similars.slideUp();
+    });
   });
 });
