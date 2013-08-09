@@ -1,6 +1,11 @@
 class Retrospectives::BadsController < ApplicationController
   before_filter :ensure_authentication
 
+  def index
+    @retrospective = Retrospective.find(params[:retrospective_id])
+    render 'retrospectives/_list_bads', layout: false
+  end
+
   def create
     bad = Bad.new(params[:bad])
     if bad.valid?
