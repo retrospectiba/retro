@@ -1,6 +1,11 @@
 class Retrospectives::GoodsController < ApplicationController
   before_filter :ensure_authentication
 
+  def index
+    @retrospective = Retrospective.find(params[:retrospective_id])
+    render 'retrospectives/_list_goods', layout: false
+  end
+
   def create
     good = Good.new(params[:good])
     if good.valid?
