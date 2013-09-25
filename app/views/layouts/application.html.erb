@@ -63,4 +63,8 @@
       </div><!-- /div:container-->
     </footer>
   </body>
+  <%= javascript_include_tag 'application' %>
+  <% if Dir.glob("app/assets/javascripts/#{params[:controller]}*").count > 0 %>
+    <%= javascript_include_tag params[:controller] %>
+  <% end %>
 </html>

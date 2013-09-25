@@ -34,12 +34,32 @@
 <div class="row-fluid list-goods-and-bads">
   <div class="span6">
     <h4><a href="#addBom" role="button" class="btn btn-small btn-success" data-toggle="modal">Bom</a></h4>
-    <%= render 'list_goods' %>
+    <table class="table goods_table" data-url="<%= retrospective_goods_path(@retrospective) %>">
+      <thead>
+        <tr>
+          <th>Descrição</th>
+          <th width="20"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render 'list_goods' %>
+      </tbody>
+    </table>
   </div><!-- div:span6 -->
   <div class="span6">
     <h4><a href="#addRuim" role="button" class="btn btn-small btn-danger" data-toggle="modal">Ruim</a></h4>
-    <%= render 'list_bads' %>
-
+    <table class="table bads_table" data-url="<%= retrospective_bads_path(@retrospective) %>">
+      <thead>
+        <tr>
+          <th>Descrição</th>
+          <th>Ação</th>
+          <th width="20"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render 'list_bads' %>
+      </tbody>
+    </table>
   </div><!-- div:span6 -->
 </div><!-- div:row -->
 

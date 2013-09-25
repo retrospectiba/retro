@@ -6,21 +6,25 @@
       <h2>Bom</h2>
     </div>
     <div class="modal-body">
-        <% if @good.errors.any? %>
-          <div class="alert alert-error">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            <h4>Atenção!</h4>
-            Os seguintes erros foram encontrados:
-            <ul>
-              <% @good.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
-        <div class="field">
-          <%= f.text_field :description, placeholder:"Descrição", class: "span5" %>
+      <% if @good.errors.any? %>
+        <div class="alert alert-error">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          <h4>Atenção!</h4>
+          Os seguintes erros foram encontrados:
+          <ul>
+            <% @good.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
         </div>
+      <% end %>
+      <div class="field">
+        <%= f.text_field :description, placeholder: 'Descrição', class: 'span5 description', autocomplete: 'off' %>
+      </div>
+      <div class="well well-small similar good">
+        <button type="button" class="close">&times;</button>
+        <ul class="nav nav-pills nav-stacked"></ul>
+      </div>
     </div>
     <div class="modal-footer">
       <%= f.submit "Salvar", class: "btn btn-primary" %>

@@ -3,9 +3,10 @@ class Bad < ActiveRecord::Base
   after_initialize  :default_values
   attr_accessor     :times_being_kept
 
-  belongs_to        :retrospective
+  belongs_to :retrospective
 
-  validates         :description, :action, :times_being_kept, :presence => true
+  validates :description, :action, :times_being_kept, presence: true
+  validates :description, uniqueness: true
 
   def keep!
     self.times_being_kept += 1

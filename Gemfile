@@ -13,6 +13,10 @@ gem 'capistrano_colors', :require => false
 gem 'geminstaller', :require => false
 gem 'rvm-capistrano', :require => false
 
+gem 'debugger'
+gem 'mailtrap'
+gem 'best_in_place'
+
 group :assets do
   gem 'uglifier'
   gem 'coffee-rails', '~> 3.2.1'
