@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.8'
 gem 'mysql2'
 gem 'jquery-rails'
-gem 'best_in_place'
 
 #capistrano
 gem 'capistrano', :require => false
@@ -13,8 +12,6 @@ gem 'capistrano_colors', :require => false
 gem 'geminstaller', :require => false
 gem 'rvm-capistrano', :require => false
 
-gem 'debugger'
-gem 'mailtrap'
 gem 'best_in_place'
 
 group :assets do
