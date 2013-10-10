@@ -13,6 +13,8 @@
           <th>#</th>
           <th>Bom</th>
           <th>Ruim</th>
+          <th>Início</th>
+          <th>Término</th>
         </tr>
       </thead>
       <tbody>
@@ -21,6 +23,8 @@
             <td><%= link_to "#{retro.name}", retrospective_path(retro)  %></td>
             <td><%= retro.try(:goods).try(:count) %></td>
             <td><%= retro.try(:bads).try(:count) %></td>
+            <td><%= retro.try(:start_at).strftime("%d/%m/%Y") %></td>
+            <td><%= retro.try(:finish_at).strftime("%d/%m/%Y") %></td>
             <% if @current_user.retrospectives.include?(retro) %>
               <td><%= link_to "Participantes", new_retrospective_invitations_path(:retrospective_id => retro.id), :class => 'btn btn-small' %></td>
             <% else %>
