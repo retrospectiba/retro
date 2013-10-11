@@ -98,7 +98,6 @@ class UsersController < ApplicationController
   end
 
   def ensure_correct_user
-    require 'pry'; binding.pry
     raise TentandoSerEspertaoException unless session[:user_id].to_s == params[:id].to_s
   end
 
