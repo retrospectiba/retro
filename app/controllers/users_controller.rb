@@ -2,7 +2,7 @@
 class UsersController < ApplicationController
 
   before_filter :ensure_authentication, :only => [:edit, :update, :destroy, :index, :password, :password_update, :show]
-  before_filter :ensure_correct_user, :only => [:edit, :update, :password_update]
+  before_filter :ensure_correct_user, :only => [:edit, :update]
 
   def index
     @users = User.all
@@ -98,6 +98,7 @@ class UsersController < ApplicationController
   end
 
   def ensure_correct_user
+    require 'pry'; binding.pry
     raise TentandoSerEspertaoException unless session[:user_id].to_s == params[:id].to_s
   end
 
