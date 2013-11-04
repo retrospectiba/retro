@@ -4,7 +4,6 @@ RetroRails::Application.routes.draw do
 
   root :to => "home#index"
 
-  resources :retrospectives
   resources :users do
     resources :retrospectives
   end

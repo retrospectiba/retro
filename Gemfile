@@ -22,7 +22,6 @@ end
 
 group :development, :test do
   gem 'mailtrap'
-  gem 'debugger'
   gem 'pry'
   gem 'pry-nav'
   gem 'pry-stack_explorer'
