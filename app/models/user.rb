@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :logged_at, :name, :password, :password_confirmation, :admin
+  attr_accessible :email, :logged_at, :name, :project, :password, :password_confirmation, :admin
 
   has_many :retrospectives
 
@@ -12,8 +12,11 @@ class User < ActiveRecord::Base
 
   validates :email,    :presence =>true, :uniqueness=>true
   validates :name,     :presence =>true
+  validates :project,  :presence =>true
   validates :password, :presence =>true, :length => { :minimum => 5, :maximum => 40 }, :confirmation => true
   validates_confirmation_of :password
+
+  USER_PROJECTS = ["Core", "WebStore", "Aplicativos"]
 
   def self.md5(text)
     Digest::MD5.hexdigest(text)

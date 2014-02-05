@@ -1,66 +1,40 @@
-require 'capistrano/ext/multistage'
-require 'bundler/capistrano'
+set :application, 'retro'
+set :repo_url,'git@bitbucket.org:abrilmdia/iba-retrospectiba.git'
+set :deploy_to, '/home/ec2-user/app/retro'
 
-def get_branch_name
-  puts ''
-  puts '*********************************************************************'
-  puts "Type the reference to the branch, tag, or any SHA1 you are deploying."
-  branch_name = Capistrano::CLI.ui.ask("Default: master")
-  branch_name = 'master' if branch_name == ''
-  branch_name
-end
+# RVM confs
+set :rvm_ruby_string, 'ruby-1.9.3-p484@retro'
+set :rvm_type, :user
 
-def get_stages
-  Dir['deploy/*.rb'].collect {|file| File.basename(file).gsub(File.extname(file),'')}
-end
+# ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
+# set :scm, :git
+
+# set :format, :pretty
+# set :log_level, :debug
+# set :pty, true
+
+set :linked_files, %w{config/database.yml}
+# set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+
+# set :default_env, { path: "/opt/ruby/bin:$PATH" }
 set :keep_releases, 5
-set :application, "retro"
-set :repository, " git@bitbucket.org:abrilmdia/iba-retrospectiba.git"
-set :use_sudo, false
-set :port, 5022
-set :deploy_branch, ENV['BRANCH'] if ENV['BRANCH']
-set :bundle_flags, "--quiet"
-set :user, "retro"
-set :deploy_to,     "/abd/app/#{application}"
-set :logs_path,     "/data_logs/#{application}/$HOSTNAME"
-set :image_path,    "/abd/app/#{application}/images"
-
-before "deploy:update", "deploy:set_branch_name"
-
-# SCM Configurations
-set :scm, :git
-set :stack, :passenger
 
 namespace :deploy do
-  desc 'Restart passenger process'
-  task :restart, :roles => :app, :except => { :no_release => true } do
-    run "touch #{current_path}/tmp/restart.txt"
+  before 'deploy:updated', :bundle do
+    on roles(:app), in: :sequence, wait: 5 do
+      within release_path do
+        execute :bundle, 'install --quiet --without development test'
+      end
+    end
   end
 
-  desc "[internal] Set a branch/tag or SHA1"
-  task :set_branch_name do
-    set :branch, get_branch_name
+  desc 'Restart application'
+  task :restart do
+    on roles(:app), in: :sequence, wait: 5 do
+      execute :touch, release_path.join('tmp/restart.txt')
+    end
   end
 
-  desc "[internal] Relink log"
-  task :relink_log do
-     run <<-CMD
-        mkdir #{logs_path};
-        rm #{latest_release}/log &&
-        ln -s #{logs_path} #{latest_release}/log &&
-        ln -s #{image_path} #{latest_release}/public/images
-     CMD
-  end
+  after :finishing, 'deploy:cleanup'
 end
-
-namespace :rake do
-  desc "Run a task on a remote server."
-  # run like: cap qa rake:invoke task=a_certain_task
-  task :invoke do
-   run("cd #{deploy_to}/current; /usr/bin/env rake #{ENV['task']}")
-  end
-end
-
-after "deploy:finalize_update", "deploy:relink_log"
-after "deploy:update", "deploy:cleanup"

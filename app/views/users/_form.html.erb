@@ -14,16 +14,24 @@
   <% end %>
 
   <div class="field">
-    <%= f.text_field :name, placeholder:"Nome", class: "span8" %> 
+    Nome
+    <%= f.text_field :name, placeholder:"Nome", class: "span8" %>
   </div>
   <div class="field">
-    <%= f.text_field :email, placeholder:"E-mail", class: "span8"  %> 
+    Email
+    <%= f.text_field :email, placeholder:"E-mail", class: "span8"  %>
   </div>
   <div class="field">
-    <%= f.password_field :password, placeholder:"Password", class: "span5"  %> 
+    Projeto
+    <%= f.text_field :project, placeholder:"Projeto", class: "span8"  %>
   </div>
   <div class="field">
-    <%= f.password_field :password_confirmation, placeholder:"Confirmação", class: "span5"  %> 
+    Senha
+    <%= f.password_field :password, placeholder:"Password", class: "span5"  %>
+  </div>
+  <div class="field">
+    Confirmação da Senha
+    <%= f.password_field :password_confirmation, placeholder:"Confirmação", class: "span5"  %>
   </div>
   <div class="field">
     <% #= f.date_select :logged_at %>

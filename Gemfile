@@ -5,10 +5,6 @@ gem 'mysql2'
 gem 'jquery-rails'
 
 #capistrano
-gem 'capistrano', :require => false
-gem 'capistrano-ext', :require => false
-gem 'capistrano-extensions', :require => false
-gem 'capistrano_colors', :require => false
 gem 'geminstaller', :require => false
 gem 'rvm-capistrano', :require => false
 
@@ -18,6 +14,12 @@ group :assets do
   gem 'uglifier'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'twitter-bootstrap-rails'
+end
+
+group :development do
+  gem 'capistrano'
+  gem 'capistrano-rvm'
+  gem 'capistrano-rails'
 end
 
 group :development, :test do

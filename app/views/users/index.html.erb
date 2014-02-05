@@ -12,6 +12,7 @@
         <tr>
           <th>Nome</th>
           <th>Email</th>
+          <th>Project</th>
           <th>Admin</th>
         </tr>
       </thead>
@@ -20,6 +21,7 @@
           <tr>
             <td><%= user.name  %></td>
             <td><%= user.email %></td>
+            <td><%= user.project %></td>
             <td><%= user.admin ? "Admin" : "Comum" %></td>
           </tr>
         <% end %>

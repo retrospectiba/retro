@@ -38,7 +38,7 @@ class RetrospectivesController < ApplicationController
   # GET /retrospectives.json
   def show
     @retrospective = Retrospective.find(params[:id])
-    @worst = Retrospective.where("user_id = #{@current_user.id} and id < #{params[:id]}").order('created_at desc').first
+    @worst = Retrospective.where("id < #{params[:id]}").order('created_at desc').first
     @good = Good.new
     @bad  = Bad.new
   end

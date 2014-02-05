@@ -7,6 +7,7 @@ describe UsersController do
     {
       :email    => "zekitow@gmail.com",
       :name     => "José Ribeiro",
+      :project  => "project",
       :password => "123456"
     }
   end

@@ -24,13 +24,19 @@
         </div>
       <% end %>
       <div class="field">
+        Nome
         <%= f.text_field :name, placeholder:"Nome", class: "span8" %>
       </div>
       <div class="field">
+        Email
         <%= f.text_field :email, placeholder:"E-mail", class: "span8"  %>
       </div>
       <div class="field">
-        <% #= f.date_select :logged_at %>
+        Projeto
+        <%= f.text_field :project, placeholder:"Projeto", class: "span8" %>
+      </div>
+      <div class="field">
+        <h4><%= @current_user.admin ? "Administrador" : "" %></h4>
       </div>
       <div class="actions">
         <%= f.submit "Salvar", class: "btn btn-primary btn-inverse" %>

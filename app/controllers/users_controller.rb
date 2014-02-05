@@ -69,6 +69,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.name = params[:user][:name]
     @user.email = params[:user][:email]
+    @user.project = params[:user][:project]
 
     respond_to do |format|
       if @user.save
