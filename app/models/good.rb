@@ -3,5 +3,5 @@ class Good < ActiveRecord::Base
 
   belongs_to :retrospective
 
-  validates :description, uniqueness: true, presence: true
+  validates :description, presence: true
 end

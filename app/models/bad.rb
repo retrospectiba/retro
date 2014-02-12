@@ -6,7 +6,6 @@ class Bad < ActiveRecord::Base
   belongs_to :retrospective
 
   validates :description, :action, :times_being_kept, presence: true
-  validates :description, uniqueness: true
 
   def keep!
     self.times_being_kept += 1
