@@ -66,7 +66,7 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.json
   def update
-    @user = current_user
+    @user = User.find(params[:id])
     @user.name = params[:user][:name]
     @user.email = params[:user][:email]
     @user.project = params[:user][:project]
