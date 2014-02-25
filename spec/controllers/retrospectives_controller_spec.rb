@@ -15,7 +15,7 @@ describe RetrospectivesController do
     subject { post :create, retrospective: retrospective  }
 
     describe "with invalid attributes" do
-      let(:retrospective) { FactoryGirl.attributes_for(:invalid_retrospective) }
+      let(:retrospective) { FactoryGirl.build(:invalid_retrospective) }
 
       it 'does not save the new retrospective' do
         expect { subject }.to_not change(Retrospective, :count)

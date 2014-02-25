@@ -26,8 +26,9 @@
         </div>
       <% end %>
       <% if @retrospective.start_at.present? %>
-        <b>Inicio</b> <em><%= best_in_place @retrospective, :start_at, type: :date, display_with: lambda{|value| l value } %></em>
-        <b>Termino</b> <em><%= best_in_place @retrospective, :finish_at, type: :date, display_with: lambda{|value| l value } %></em>
+        <b>Início</b> <em><%= @retrospective.start_at.strftime("%d/%m/%Y") %></em>
+        <b>Término</b> <em><%= @retrospective.finish_at.strftime("%d/%m/%Y") %></em>
+        <b> | Projeto</b> <em><%= @retrospective.project %></em>
       <% end %>
     </div>
   </div><!--/div:span5 -->

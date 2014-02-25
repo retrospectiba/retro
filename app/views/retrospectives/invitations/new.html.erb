@@ -19,7 +19,7 @@
           </tr>
         </thead>
         <tbody>
-          <% (User.order('name') - [@current_user]).each do |user| %>
+          <% (User.order('project').order('name') - [@current_user]).each do |user| %>
             <tr>
               <td><%= check_box_tag 'users_id[]', user.id, @retrospective.invited_users.include?(user) %></td>
               <td><%= user.name %></td>

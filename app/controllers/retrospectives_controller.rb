@@ -7,8 +7,12 @@ class RetrospectivesController < ApplicationController
   # GET /retrospectives.json
   def index
     @user = current_user
-    #teste
-    @retrospectives = (@user.invited_retrospectives + @user.retrospectives).uniq
+
+    @retrospectives = []
+    (@user.invited_retrospectives + @user.retrospectives).each do |r|
+      @retrospectives << r if r.project == @user.project
+    end
+
     @retrospective = Retrospective.new
     respond_to do |format|
       format.html # index.html.erb
@@ -18,6 +22,7 @@ class RetrospectivesController < ApplicationController
   def create
     @retrospective = Retrospective.new(params[:retrospective])
     @retrospective.user = @current_user
+    @retrospective.project = @current_user.project
 
     if @retrospective.save
       notice = 'Sua nova retro foi criada!'
@@ -38,7 +43,7 @@ class RetrospectivesController < ApplicationController
   # GET /retrospectives.json
   def show
     @retrospective = Retrospective.find(params[:id])
-    @worst = Retrospective.where("id < #{params[:id]}").order('created_at desc').first
+    @worst = Retrospective.where("id < #{params[:id]} and project = '#{@retrospective.project}'").order('created_at desc').first
     @good = Good.new
     @bad  = Bad.new
   end

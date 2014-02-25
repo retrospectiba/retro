@@ -7,3 +7,10 @@ pt_br:
       default: "%d/%m/%Y"
       short: "%d de %B"
       long: "%d de %B de %Y"
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            password:
+              too_short: "Deve ter mais que 4 caracteres!"

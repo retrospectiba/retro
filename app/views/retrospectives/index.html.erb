@@ -15,6 +15,8 @@
           <th>Ruim</th>
           <th>Início</th>
           <th>Término</th>
+          <th>Convidados</th>
+          <th>Projeto</th>
         </tr>
       </thead>
       <tbody>
@@ -30,6 +32,7 @@
             <% else %>
               <td>Convidado por <%= retro.user.name %></td>
             <% end %>
+            <td><%= retro.project %></td>
           </tr>
         <% end %>
       </tbody>

@@ -12,7 +12,7 @@ FactoryGirl.define do
   end
 
   factory :retrospective do
-    name 'Sprint# 1 - Mastering on Grosela'
+    name 'Sprint# 1 - Mastering on Groselha'
   end
 
   factory :invalid_retrospective, parent: :retrospective do

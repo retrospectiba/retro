@@ -1,0 +1,15 @@
+v Incluir usuário que criou a retro
+v Incluir usuário que registrou o good/bads
+- Incluir usuário que deu like no bad/good (aqui consigo corrigir o problema dos likes)
+v Incluir projeto na retro
+- Incluir lista de projetos na criação de usuário (frontend task)
+v Filtrar retro por projeto
+- Lembrar senha
+- Incluir campo para "owner" dos bads. (frontend task)
+- Incluir mecanismo de fechar e abrir retro.
+- Não poder alterar retro fechada
+- Ocultar os bads e goods dos outros usuários enquanto a retro estiver fechada
+- Liberar bads e goods quando a retro tiver fechada
+- Incluir funcionalidade para registrar as USs do sprint (não precisa integrar com o rally)
+- definir objetivo para o próximo sprint
+-

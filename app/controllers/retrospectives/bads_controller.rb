@@ -8,6 +8,7 @@ class Retrospectives::BadsController < ApplicationController
 
   def create
     bad = Bad.new(params[:bad])
+    bad.user = current_user
     if bad.valid?
       bad.save
     else

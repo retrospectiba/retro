@@ -4,6 +4,7 @@ class Bad < ActiveRecord::Base
   attr_accessor     :times_being_kept
 
   belongs_to :retrospective
+  belongs_to :user
 
   validates :description, :action, :times_being_kept, presence: true
 
