@@ -8,9 +8,10 @@ class RetrospectivesController < ApplicationController
   def index
     @user = current_user
 
-    @retrospectives = []
-    (@user.invited_retrospectives + @user.retrospectives).each do |r|
-      @retrospectives << r if r.project == @user.project
+    if @user.admin
+      @retrospectives = Retrospective.order(:start_at)
+    else
+      @retrospectives = Retrospective.where(project: @user.project).order(:start_at)
     end
 
     @retrospective = Retrospective.new

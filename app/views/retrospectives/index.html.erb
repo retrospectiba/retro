@@ -15,7 +15,6 @@
           <th>Ruim</th>
           <th>Início</th>
           <th>Término</th>
-          <th>Convidados</th>
           <th>Projeto</th>
         </tr>
       </thead>
@@ -27,17 +26,14 @@
             <td><%= retro.try(:bads).try(:count) %></td>
             <td><%= retro.start_at ? retro.start_at.strftime("%d/%m/%Y") : "" %></td>
             <td><%= retro.finish_at ? retro.finish_at.strftime("%d/%m/%Y") : "" %></td>
-            <% if @current_user.retrospectives.include?(retro) %>
-              <td><%= link_to "Participantes", new_retrospective_invitations_path(:retrospective_id => retro.id), :class => 'btn btn-small' %></td>
-            <% else %>
-              <td>Convidado por <%= retro.user.name %></td>
-            <% end %>
             <td><%= retro.project %></td>
           </tr>
         <% end %>
       </tbody>
     </table>
-    <a href="#newRetro" role="button" class="btn btn-inverse btn-large" data-toggle="modal">Nova Retrospectiva</a>
+    <% if @current_user.admin %>
+      <a href="#newRetro" role="button" class="btn btn-inverse btn-large" data-toggle="modal">Nova Retrospectiva</a>
+    <% end %>
     <br />
 
   </div><!-- div:span6 -->
