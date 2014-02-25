@@ -92,14 +92,12 @@ class UsersController < ApplicationController
   end
 
   def logout
-    user = User.find(current_user.id)
-    user.save
     session[:user_id] = nil
     redirect_to root_url, :alert => "Obrigado por ter usado o Retrospectiba!"
   end
 
   def ensure_correct_user
-    raise TentandoSerEspertaoException unless session[:user_id].to_s == params[:id].to_s
+    raise TentandoSerEspertaoException  if !current_user.admin && session[:user_id].to_s != params[:id].to_s
   end
 
   class TentandoSerEspertaoException < StandardError

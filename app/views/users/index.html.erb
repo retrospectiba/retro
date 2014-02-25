@@ -19,7 +19,7 @@
       <tbody>
         <% @users.each do |user| %>
           <tr>
-            <td><%= user.name  %></td>
+            <td><%= link_to user.name, edit_user_path(user.id) %></td>
             <td><%= user.email %></td>
             <td><%= user.project %></td>
             <td><%= user.admin ? "Admin" : "Comum" %></td>
