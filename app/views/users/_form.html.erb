@@ -13,30 +13,29 @@
     </div>
   <% end %>
 
-  <div class="field">
-    Nome
-    <%= f.text_field :name, placeholder:"Nome", class: "span8" %>
-  </div>
-  <div class="field">
-    Email
-    <%= f.text_field :email, placeholder:"E-mail", class: "span8"  %>
-  </div>
-  <div class="field">
-    Projeto
-    <%= f.text_field :project, placeholder:"Projeto", class: "span8"  %>
-  </div>
-  <div class="field">
-    Senha
-    <%= f.password_field :password, placeholder:"Password", class: "span5"  %>
-  </div>
-  <div class="field">
-    Confirmação da Senha
-    <%= f.password_field :password_confirmation, placeholder:"Confirmação", class: "span5"  %>
-  </div>
-  <div class="field">
-    <% #= f.date_select :logged_at %>
-  </div>
-  <div class="actions">
-    <%= f.submit "Salvar", class: "btn btn-primary btn-inverse" %>
-  </div>
+  <ul class="form">
+    <li class="field">
+      <label>Nome </label>
+      <%= f.text_field :name, placeholder:"Nome", class: "span8" %>
+    </li>
+    <li class="field">
+      <label>Email </label>
+      <%= f.text_field :email, placeholder:"Email", class: "span8" %>
+    </li>
+    <li class="field">
+      <label>Time </label>
+      <%= f.collection_select(:team_id, @teams, :id, :name) %>
+    </li>
+    <li class="field">
+      <label>Senha </label>
+      <%= f.password_field :password, placeholder:"Senha", class: "password_field" %>
+    </li>
+    <li class="field">
+      <label>Confirmação de Senha </label>
+      <%= f.password_field :password_confirmation, placeholder:"Confirmação", class: "password_field" %>
+    </li>
+    <li class="field">
+      <%= f.submit "Salvar", class: "btn btn-primary btn-inverse" %>
+    </li>
+  </ul>
 <% end %>

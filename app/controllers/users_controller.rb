@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   before_filter :ensure_correct_user, :only => [:edit, :update]
 
   def index
-    @users = User.order(:project, :name, :admin)
+    @users = User.order(:team_id, :name, :role)
     @user = User.new
     respond_to do |format|
       format.html # index.html.erb
@@ -16,12 +16,14 @@ class UsersController < ApplicationController
   # GET /users/new.json
   def new
     @user = User.new
+    @teams = Team.order(:name)
     render layout: false
   end
 
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
+    @teams = Team.order(:name)
   end
 
   # GET /users/1
@@ -52,8 +54,8 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+    @teams = Team.order(:name)
     @user = User.new(params[:user])
-
     respond_to do |format|
       if @user.save
         format.html { redirect_to root_url, alert: 'Sua conta foi criada!' }
@@ -69,7 +71,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.name = params[:user][:name]
     @user.email = params[:user][:email]
-    @user.project = params[:user][:project]
+    @user.team_id = params[:user][:team_id]
+    @user.role = params[:user][:role]
 
     respond_to do |format|
       if @user.save
@@ -97,7 +100,7 @@ class UsersController < ApplicationController
   end
 
   def ensure_correct_user
-    raise TentandoSerEspertaoException  if !current_user.admin && session[:user_id].to_s != params[:id].to_s
+    raise TentandoSerEspertaoException  if !current_user.role == "admin" && session[:user_id].to_s != params[:id].to_s
   end
 
   class TentandoSerEspertaoException < StandardError

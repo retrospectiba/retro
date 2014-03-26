@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :logged_at, :name, :project, :password, :password_confirmation, :admin
+  attr_accessible :email, :logged_at, :name, :team_id, :password, :password_confirmation, :role
 
   has_many :retrospectives
+  belongs_to :team
 
   has_and_belongs_to_many :invited_retrospectives,
                           :class_name => "Retrospective",
@@ -12,7 +13,7 @@ class User < ActiveRecord::Base
 
   validates :email,    :presence =>true, :uniqueness=>true
   validates :name,     :presence =>true
-  validates :project,  :presence =>true
+  validates :team_id,  :presence =>true
   validates :password, :presence =>true, :length => { :minimum => 5, :maximum => 40 }, :confirmation => true
   validates_confirmation_of :password
 
@@ -34,5 +35,4 @@ class User < ActiveRecord::Base
       user
     end
   end
-
 end

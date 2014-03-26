@@ -23,24 +23,29 @@
           </ul>
         </div>
       <% end %>
-      <div class="field">
-        Nome
-        <%= f.text_field :name, placeholder:"Nome", class: "span8" %>
-      </div>
-      <div class="field">
-        Email
-        <%= f.text_field :email, placeholder:"E-mail", class: "span8"  %>
-      </div>
-      <div class="field">
-        Projeto
-        <%= f.text_field :project, placeholder:"Projeto", class: "span8" %>
-      </div>
-      <div class="field">
-        <h4><%= @user.admin ? "Administrador" : "" %></h4>
-      </div>
-      <div class="actions">
-        <%= f.submit "Salvar", class: "btn btn-primary btn-inverse" %>
-      </div>
+      <ul class="form">
+        <li class="field">
+          <label>Nome </label>
+          <%= f.text_field :name, placeholder:"Nome", class: "span8" %>
+        </li>
+        <li class="field">
+          <label>Email </label>
+          <%= f.text_field :email, placeholder:"Email", class: "span8" %>
+        </li>
+        <li class="field">
+          <label>Time </label>
+          <%= f.collection_select(:team_id, @teams, :id, :name) %>
+        </li>
+        <% if @current_user.role == "admin" %>
+          <li class="field">
+            <label>Papel </label>
+            <%= select_tag("user[role]", options_for_select([ ['Selecione um nível', ''], ['Administrador', 'admin'], ['Líder de Time', 'team_leader'] ], @user.role))%>
+          </li>
+        <% end %>
+        <li class="field">
+          <%= f.submit "Salvar", class: "btn btn-primary btn-inverse" %>
+        </li>
+      </ul>
     <% end %>
   </div><!-- div:span3 -->
 </div><!-- div:row -->

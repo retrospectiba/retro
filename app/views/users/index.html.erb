@@ -21,8 +21,8 @@
           <tr>
             <td><%= link_to user.name, edit_user_path(user.id) %></td>
             <td><%= user.email %></td>
-            <td><%= user.project %></td>
-            <td><%= user.admin ? "Admin" : "Comum" %></td>
+            <td><%= user.team.name %></td>
+            <td><%= user.role == "admin" ? image_tag("tick.png") : image_tag("untick.png") %></td>
           </tr>
         <% end %>
       </tbody>
