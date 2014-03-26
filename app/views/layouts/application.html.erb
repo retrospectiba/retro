@@ -26,7 +26,7 @@
           <div class="nav-collapse">
             <ul class="nav pull-right">
               <li class="divider-vertical"></li>
-              <% if @current_user.admin %>
+              <% if @current_user.role == "admin" %>
                 <li><%= link_to "Usuários", users_path %></li>
                 <li class="divider"></li>
               <% end %>

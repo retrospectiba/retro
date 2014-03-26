@@ -4,7 +4,7 @@ require 'spec_helper'
 describe User do
   it { should validate_presence_of(:email) }
   it { should validate_presence_of(:name) }
-  it { should validate_presence_of(:project) }
+  it { should validate_presence_of(:team_id) }
   it { should validate_presence_of(:password) }
 
   describe ".authenticate" do
@@ -12,7 +12,7 @@ describe User do
       {
         :email => "zekitow@gmail.com",
         :name => "José Ribeiro",
-        :project => "Core",
+        :team_id => 1,
         :password => "123456",
         :password_confirmation => "123456"
       }

@@ -6,7 +6,7 @@ FactoryGirl.define do
     id                    123456
     email                 'zekitow@gmail.com'
     name                  'José Ribeiro'
-    project               'Drunk Monkey'
+    team_id               1
     password              '123456'
     password_confirmation '123456'
   end

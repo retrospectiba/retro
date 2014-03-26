@@ -12,5 +12,7 @@ pt_br:
       models:
         user:
           attributes:
+            team_id:
+              blank: "O campo time não pode ficar em branco"
             password:
               too_short: "Deve ter mais que 4 caracteres!"

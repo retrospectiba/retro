@@ -15,7 +15,7 @@
           <th>Ruim</th>
           <th>Início</th>
           <th>Término</th>
-          <th>Projeto</th>
+          <th>Time</th>
         </tr>
       </thead>
       <tbody>
@@ -26,12 +26,12 @@
             <td><%= retro.try(:bads).try(:count) %></td>
             <td><%= retro.start_at ? retro.start_at.strftime("%d/%m/%Y") : "" %></td>
             <td><%= retro.finish_at ? retro.finish_at.strftime("%d/%m/%Y") : "" %></td>
-            <td><%= retro.project %></td>
+            <td><%= retro.user.team.name %></td>
           </tr>
         <% end %>
       </tbody>
     </table>
-    <% if @current_user.admin %>
+    <% if ["admin", "team_leader"].include?(@current_user.role) %>
       <a href="#newRetro" role="button" class="btn btn-inverse btn-large" data-toggle="modal">Nova Retrospectiva</a>
     <% end %>
     <br />

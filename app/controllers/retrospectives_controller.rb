@@ -8,10 +8,10 @@ class RetrospectivesController < ApplicationController
   def index
     @user = current_user
 
-    if @user.admin
+    if @user.role == "admin"
       @retrospectives = Retrospective.order(:start_at)
     else
-      @retrospectives = Retrospective.where(project: @user.project).order(:start_at)
+      @retrospectives = Retrospective.where(team_id: @user.team_id).order(:start_at)
     end
 
     @retrospective = Retrospective.new
@@ -23,7 +23,7 @@ class RetrospectivesController < ApplicationController
   def create
     @retrospective = Retrospective.new(params[:retrospective])
     @retrospective.user = @current_user
-    @retrospective.project = @current_user.project
+    @retrospective.team_id = @current_user.team_id
 
     if @retrospective.save
       notice = 'Sua nova retro foi criada!'
@@ -44,7 +44,7 @@ class RetrospectivesController < ApplicationController
   # GET /retrospectives.json
   def show
     @retrospective = Retrospective.find(params[:id])
-    @worst = Retrospective.where("id < #{params[:id]} and project = '#{@retrospective.project}'").order('created_at desc').first
+    @worst = Retrospective.where("id < #{params[:id]} and team_id = '#{@retrospective.team_id}'").order('created_at desc').first
     @good = Good.new
     @bad  = Bad.new
   end

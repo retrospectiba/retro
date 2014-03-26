@@ -1,5 +1,5 @@
 class Retrospective < ActiveRecord::Base
-  attr_accessible :name, :start_at, :finish_at, :project
+  attr_accessible :name, :start_at, :finish_at, :team_id
 
   belongs_to :user
 
