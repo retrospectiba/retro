@@ -1,0 +1,34 @@
+<ul class="breadcrumb">
+  <li><%= link_to @current_user.name, users_path %> <span class="divider">/</span></li>
+  <li><b>Times</b></li>
+</ul>
+<div class="row-fluid">
+  <div class="span6">
+    <div class="page-header">
+      <h3>Times</h3>
+    </div>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Líder</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @teams.each do |team| %>
+          <tr>
+            <td><%= link_to team.name, edit_team_path(team.id) %></td>
+            <td><%= team_leader_name(team) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= link_to "Novo Time", new_team_path, class: "btn btn-inverse btn-large" %>
+    <br />
+
+  </div><!-- div:span6 -->
+  <div class="span5">
+    <img src="/assets/milhouse.png"  title="<%= @current_user.name %>" alt="Ralph Steadman Artwork"/>
+  </div><!-- div:span6 -->
+</div><!-- div:row -->
+

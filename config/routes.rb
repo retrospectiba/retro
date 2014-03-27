@@ -8,6 +8,8 @@ RetroRails::Application.routes.draw do
     resources :retrospectives
   end
 
+  resources :teams
+
   resources :retrospectives do
     resources :goods     , :controller => "retrospectives/goods" do
       collection { get :similar_retro_items }
