@@ -26,7 +26,7 @@
             <td><%= retro.try(:bads).try(:count) %></td>
             <td><%= retro.start_at ? retro.start_at.strftime("%d/%m/%Y") : "" %></td>
             <td><%= retro.finish_at ? retro.finish_at.strftime("%d/%m/%Y") : "" %></td>
-            <td><%= retro.user.team.name %></td>
+            <td><%= retro.team.name %></td>
           </tr>
         <% end %>
       </tbody>

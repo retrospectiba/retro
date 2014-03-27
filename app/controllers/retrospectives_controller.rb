@@ -7,6 +7,7 @@ class RetrospectivesController < ApplicationController
   # GET /retrospectives.json
   def index
     @user = current_user
+    @teams = Team.order(:name)
 
     if @user.role == "admin"
       @retrospectives = Retrospective.order(:start_at)
@@ -22,8 +23,6 @@ class RetrospectivesController < ApplicationController
 
   def create
     @retrospective = Retrospective.new(params[:retrospective])
-    @retrospective.user = @current_user
-    @retrospective.team_id = @current_user.team_id
 
     if @retrospective.save
       notice = 'Sua nova retro foi criada!'

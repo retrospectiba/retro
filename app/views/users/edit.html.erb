@@ -39,7 +39,7 @@
         <% if @current_user.role == "admin" %>
           <li class="field">
             <label>Papel </label>
-            <%= select_tag("user[role]", options_for_select([ ['Selecione um nível', ''], ['Administrador', 'admin'], ['Líder de Time', 'team_leader'] ], @user.role))%>
+            <%= select_tag("user[role]", options_for_select([ ['Selecione um nível', ''], ['Administrador', 'admin'], ['Líder de Time', 'team_leader'], ['PO', 'po'], ['Usuário', 'user'], ['CT', 'ct'], ['QA', 'qa'], ['Analista', 'analist'] ], @user.role))%>
           </li>
         <% end %>
         <li class="field">

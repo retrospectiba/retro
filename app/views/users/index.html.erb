@@ -13,7 +13,7 @@
           <th>Nome</th>
           <th>Email</th>
           <th>Time</th>
-          <th>Admin</th>
+          <th>Papel</th>
         </tr>
       </thead>
       <tbody>
@@ -22,7 +22,7 @@
             <td><%= link_to user.name, edit_user_path(user.id) %></td>
             <td><%= user.email %></td>
             <td><%= user.team.name %></td>
-            <td><%= user.role == "admin" ? image_tag("tick.png") : image_tag("untick.png") %></td>
+            <td><%= role_name(user.role) %></td>
           </tr>
         <% end %>
       </tbody>

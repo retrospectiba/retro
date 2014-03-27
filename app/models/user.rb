@@ -1,13 +1,7 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :logged_at, :name, :team_id, :password, :password_confirmation, :role
 
-  has_many :retrospectives
   belongs_to :team
-
-  has_and_belongs_to_many :invited_retrospectives,
-                          :class_name => "Retrospective",
-                          :join_table => "users_retrospectives",
-                          :association_foreign_key => "retrospective_id"
 
   before_create :encrypt_password
 

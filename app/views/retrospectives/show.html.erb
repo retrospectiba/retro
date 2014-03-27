@@ -16,7 +16,7 @@
 <div class="row-fluid">
   <div class="span12">
     <div class="page-header">
-      <% if @current_user.admin %>
+      <% if @current_user.role == "admin" %>
         <div class="sprint-header">
           <h3><%= @retrospective.name %></h3>
           <%= link_to retrospective_send_email_path(@retrospective), :role => "button", :class => "btn btn-inverse btn-small btn-primary", "data-toggle" =>"modal" do %>
@@ -28,7 +28,7 @@
       <% if @retrospective.start_at.present? %>
         <b>Início</b> <em><%= @retrospective.start_at.strftime("%d/%m/%Y") %></em>
         <b>Término</b> <em><%= @retrospective.finish_at.strftime("%d/%m/%Y") %></em>
-        <b> | Projeto</b> <em><%= @retrospective.project %></em>
+        <b> | Time</b> <em><%= @retrospective.team.name %></em>
       <% end %>
     </div>
   </div><!--/div:span5 -->

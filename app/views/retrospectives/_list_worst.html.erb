@@ -15,7 +15,7 @@
             <tr class="warning">
               <td><%= bad.description %></td>
               <td><%= bad.action %></td>
-              <% if @current_user.admin %>
+              <% if @current_user.role == "admin" %>
                 <td>
                   <%= link_to 'Sim',  retrospective_bad_to_good_path(@retrospective, bad), class: 'btn btn-small btn-success' %>
                   <%= link_to 'Não',  retrospective_bad_keeps_path(@retrospective, bad), class: 'btn btn-small btn-danger' %>

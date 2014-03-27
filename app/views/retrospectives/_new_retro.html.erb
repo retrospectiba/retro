@@ -21,6 +21,9 @@
           <%= f.text_field :name, class: "span5", value: "Sprint# #{@retrospectives.count + 1}" %>
         </div>
         <div class="field">
+          <%= f.collection_select(:team_id, @teams, :id, :name) %>
+        </div>
+        <div class="field">
           <span class="span3">Data inicio</span>
           <span class="span2">Data final</span>
         </div>
