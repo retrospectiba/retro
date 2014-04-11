@@ -32,11 +32,13 @@ RetroRails::Application.routes.draw do
   delete "/votes/:model/:id" => "votes#destroy", as: :vote_down
   delete "/votes/:model/:id" => "votes#destroy", as: :vote_down
 
-  match "/signup"          => "users#new"
-  match "/signin"          => "users#authenticate"
-  match "/logout"          => "users#logout"
-  match "/password"        => "users#password"
-  match "/password_update" => "users#password_update"
+  match "/signup"           => "users#new"
+  match "/signin"            => "users#authenticate"
+  match "/logout"            => "users#logout"
+  match "/password"          => "users#password"
+  match "/password_update"   => "users#password_update"
+
+  resources :remember_password
 
   # Error 404 Handler
   match "*path" => "application#not_found"
