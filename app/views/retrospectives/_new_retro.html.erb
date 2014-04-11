@@ -21,7 +21,11 @@
           <%= f.text_field :name, class: "span5", value: "Sprint# #{@retrospectives.count + 1}" %>
         </div>
         <div class="field">
-          <%= f.collection_select(:team_id, @teams, :id, :name) %>
+          <% if @current_user.role == "admin" %>
+            <%= f.collection_select(:team_id, @teams, :id, :name) %>
+          <% elsif @current_user.role == "team_leader" %>
+            <%= f.hidden_field :team_id, value: @current_user.team_id %>
+          <% end %>
         </div>
         <div class="field">
           <span class="span3">Data inicio</span>
