@@ -50,4 +50,9 @@ class TeamsController < ApplicationController
       end
     end
   end
+
+  # GET /teams/members/1
+  def members
+    @team = Team.find(params[:id])
+  end
 end

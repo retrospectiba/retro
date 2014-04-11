@@ -1,0 +1,38 @@
+<ul class="breadcrumb">
+  <li><%= link_to @current_user.name, users_path %> <span class="divider">/</span></li>
+  <li><b>Usuários</b></li>
+</ul>
+<div class="row-fluid">
+  <div class="span6">
+    <div class="page-header">
+      <h3>Usuários</h3>
+    </div>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Time</th>
+          <th>Papel</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @team.users.each do |user| %>
+          <tr>
+            <td><%= link_to user.name, edit_user_path(user.id) %></td>
+            <td><%= user.email %></td>
+            <td><%= user.team.name %></td>
+            <td><%= role_name(user.role) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <!--  <a href="#newUser" role="button" class="btn btn-inverse btn-large" data-toggle="modal">Novo usuário</a> -->
+    <br />
+
+  </div><!-- div:span6 -->
+  <div class="span5">
+    <img src="/assets/bart.png"  title="<%= @current_user.name %>" alt="Ralph Steadman Artwork"/>
+  </div><!-- div:span6 -->
+</div><!-- div:row -->
+

@@ -15,6 +15,11 @@ FactoryGirl.define do
     name 'Sprint# 1 - Mastering on Groselha'
   end
 
+  factory :team do
+    name 'Sprint# 1 - Mastering on Groselha'
+    user_id 1
+  end
+
   factory :invalid_retrospective, parent: :retrospective do
     name nil
   end

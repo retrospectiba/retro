@@ -1,3 +1,4 @@
+# encoding : utf-8
 class CreateTeamsInDatabase < ActiveRecord::Migration
   def self.up
     teams = { "Time Bruno" => { "email_owner" => "bruno.nascimento@abril.com.br" },
@@ -7,8 +8,12 @@ class CreateTeamsInDatabase < ActiveRecord::Migration
               "Time Juliana" => { "email_owner" => "johalf.santos@abril.com.br" },
               "Time Adriano" => { "email_owner" => "antonio.costa@abril.com.br" },
               "Time Iba" => { "email_owner" => "antonio.costa@abril.com.br" },
-              "Time N3" => { "email_owner" => "marcelo.silva@abril.com.br" }
+              "Time N3" => { "email_owner" => "marcelo.silva@abril.com.br" },
+              "Time Análise" => { "email_owner" => "danilo.lima@abril.com.br" }
     }
+
+    #default team
+    Team.new(name: 'Time A').save
 
     teams.each do |team_name, team_data|
       user = User.where(email: team_data["email_owner"]).first

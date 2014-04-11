@@ -1,5 +1,5 @@
 module TeamsHelper
   def team_leader_name(team)
-    return User.where(id: team.user_id).first.name
+    User.where(id: team.user_id).first.try(:name)
   end
 end

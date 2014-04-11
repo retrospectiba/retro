@@ -26,7 +26,10 @@ RetroRails::Application.routes.draw do
   get "/retrospectives/send_email/:id" => "retrospectives#send_email", as: :retrospective_send_email
   get "/retrospectives/preview_email/:id" => "retrospectives#preview_email", as: :retrospective_preview_email
 
+  get "/team/members/:id" => "teams#members", as: :show_members
+
   post   "/votes/:model/:id" => "votes#create", as: :vote_up
+  delete "/votes/:model/:id" => "votes#destroy", as: :vote_down
   delete "/votes/:model/:id" => "votes#destroy", as: :vote_down
 
   match "/signup"          => "users#new"
