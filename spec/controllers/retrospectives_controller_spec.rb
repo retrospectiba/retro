@@ -47,7 +47,8 @@ describe RetrospectivesController do
     after { User.delete_all }
 
     subject { get "send_email", :id => retrospective.id  }
-    let(:retrospective) { FactoryGirl.create(:retrospective, :user => user ) }
+    let(:team) { FactoryGirl.create(:team, :user_id => user.id ) }
+    let(:retrospective) { FactoryGirl.create(:retrospective, :team => team ) }
 
     context "when fails to send an email" do
       before do

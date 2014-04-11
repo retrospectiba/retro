@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :logged_at, :name, :team_id, :password, :password_confirmation, :role
+  attr_accessible :email, :logged_at, :name, :team_id, :password, :password_confirmation, :forgot_passworrd_token, :role
 
   belongs_to :team
 
@@ -28,5 +28,15 @@ class User < ActiveRecord::Base
     if user && user.password == md5(password)
       user
     end
+  end
+
+  def generate_forgot_password_token
+     self.forgot_password_token = generate_digest_token
+  end
+
+  private
+
+  def generate_digest_token
+    Digest.bubblebabble(SecureRandom.base64)
   end
 end

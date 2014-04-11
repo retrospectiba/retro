@@ -23,6 +23,7 @@ class RetrospectivesController < ApplicationController
 
   def create
     @retrospective = Retrospective.new(params[:retrospective])
+    @retrospective.team_id = current_user.team_id
 
     if @retrospective.save
       notice = 'Sua nova retro foi criada!'
