@@ -3,7 +3,7 @@ class RememberPasswordController < ApplicationController
   def index
   end
 
-  def rememeber_password
+  def remember_password
     user = User.find(params[:email])
 
     if user
@@ -12,11 +12,12 @@ class RememberPasswordController < ApplicationController
         response = user.links.generate_forgot_password_token
         #envia email
       end
-      flash[:message] = "Istruções enviadas para o email informado."
+      flash[:message] = "Instruções enviadas para o email informado."
     else
       flash[:error] = "Não foi possível enviar o e-mail para lembrete de senha."
     end
+
+    redirect_to root_path
   end
 
-  redirect_to home_path
 end
