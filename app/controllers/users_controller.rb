@@ -68,6 +68,7 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.json
   def update
+    @teams = Team.order(:name)
     @user = User.find(params[:id])
     @user.name = params[:user][:name]
     @user.email = params[:user][:email]

@@ -3,7 +3,6 @@ class RetrospectiveMailer< ActionMailer::Base
 
   def retrospective_resume(id)
     @retrospective = Retrospective.find(id)
-    @worst = Retrospective.where(:id => id).first
-    mail(to: 'danilo.moura.lima@gmail.com', subject: "Items da retrospectiva: #{@retrospective.name}")
+    mail(to: @retrospective.team.users.map(&:email), subject: "Items da retrospectiva: #{@retrospective.name}")
   end
 end

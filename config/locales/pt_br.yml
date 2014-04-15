@@ -13,6 +13,8 @@ pt_br:
         user:
           attributes:
             team_id:
-              blank: "O campo time não pode ficar em branco"
+              blank: "não pode ficar em branco"
             password:
-              too_short: "Deve ter mais que 4 caracteres!"
+              too_short: "deve ter mais que 4 caracteres!"
+            email:
+              taken: "já cadastrado!"

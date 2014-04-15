@@ -6,4 +6,8 @@ module UsersHelper
   def role_name(role)
     return ROLES[role.to_sym]
   end
+
+  def can_edit?
+    ['team_leader', 'admin'].include?(@current_user.role)
+  end
 end

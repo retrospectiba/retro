@@ -31,7 +31,7 @@
         <% end %>
       </tbody>
     </table>
-    <% if ["admin", "team_leader"].include?(@current_user.role) %>
+    <% if can_edit? %>
       <a href="#newRetro" role="button" class="btn btn-inverse btn-large" data-toggle="modal">Nova Retrospectiva</a>
     <% end %>
     <br />
