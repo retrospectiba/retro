@@ -1,7 +1,7 @@
 # encoding : utf-8
 class UsersController < ApplicationController
 
-  before_filter :ensure_authentication, :only => [:edit, :update, :destroy, :index, :password, :password_update, :show]
+  before_filter :ensure_authentication, :only => [:edit, :update, :destroy, :index, :show]
   before_filter :ensure_correct_user, :only => [:edit, :update]
 
   def index
@@ -33,17 +33,20 @@ class UsersController < ApplicationController
 
   # GET /password
   def password
-    @user = current_user
+    @user = User.where(forgot_password_token: params[:forgot_password_token]).first
   end
 
   def password_update
-    @user = current_user
+    @user = User.where(forgot_password_token: params[:user][:forgot_password_token]).first
     @user.password = User.md5(params[:user][:password])
     @user.password_confirmation = User.md5(params[:user][:password_confirmation])
 
     respond_to do |format|
       if !params[:user][:password].blank? and @user.save
         session[:user_id] = @user.id
+        @user.reload
+        @user.forgot_password_token = nil
+        @user.save
         format.html { redirect_to "/retrospectives", notice: 'Sua senha foi alterada!' }
       else
         format.html { render action: "password", notice: 'Suas senhas não conferem!' }

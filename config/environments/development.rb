@@ -34,14 +34,15 @@ RetroRails::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
-  config.action_mailer.default_url_options = { :host => "dev.retrospectiba.com" }
+  config.action_mailer.default_url_options = { :host => "localhost:3000" }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :address              => "mailtrap.io",
-    :port                 => 2525,
-    :user_name            => 'fosformol-a50f2648ea12df6b',
-    :password             => '8252459c6e3b1b22',
-    :authentication       => 'plain',
+    :user_name => 'iba-dev-e346c5830dec844d',
+    :password => '1e1e5e0f33e8887e',
+    :address => 'mailtrap.io',
+    :domain => 'mailtrap.io',
+    :port => '2525',
+    :authentication => :cram_md5,
     :enable_starttls_auto => true
   }
 end

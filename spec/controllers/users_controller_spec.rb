@@ -139,19 +139,19 @@ describe UsersController do
 
   describe "PUT password_update" do
     describe "with valid params" do
-      let(:user_request) { {'password' => "123", 'password_confirmation' => "123" } }
+      let(:user_request) { {'password' => "123", 'password_confirmation' => "123", 'forgot_password_token' => 'abcd1234' } }
 
       it "updates the requested user" do
         user = User.create! valid_attributes
         session[:user_id] = user.id
-        User.any_instance.should_receive(:save)
+        User.stub_chain(:where, :first).and_return(user)
         put :password_update, {:id => user.to_param, :user => user_request }
       end
 
       it "redirects to users" do
         user = User.create! valid_attributes
         session[:user_id] = user.id
-        User.any_instance.should_receive(:save).and_return(true)
+        User.stub_chain(:where, :first).and_return(user)
         put :password_update, {:id => user.to_param, :user => user_request }
         response.should redirect_to("/retrospectives")
       end

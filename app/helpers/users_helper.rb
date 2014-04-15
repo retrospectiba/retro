@@ -10,4 +10,8 @@ module UsersHelper
   def can_edit?
     ['team_leader', 'admin'].include?(@current_user.role)
   end
+
+  def base_url
+    request.base_url
+  end
 end
