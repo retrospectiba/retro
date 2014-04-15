@@ -26,17 +26,19 @@
           <div class="nav-collapse">
             <ul class="nav pull-right">
               <li class="divider-vertical"></li>
-              <% if @current_user.role == "admin" %>
-                <li><%= link_to "Usuários", users_path %></li>
-                <li class="divider"></li>
-                <li><%= link_to "Times", teams_path %></li>
-                <li class="divider"></li>
+              <% if @current_user %>
+                <% if @current_user.role == "admin" %>
+                  <li><%= link_to "Usuários", users_path %></li>
+                  <li class="divider"></li>
+                  <li><%= link_to "Times", teams_path %></li>
+                  <li class="divider"></li>
+                <% end %>
+                <li><%= link_to @current_user.name, edit_user_path(@current_user) %>
+                  <li class="divider"></li>
+                  <li><%= link_to "Alterar senha", password_path %></li>
+                  <li class="divider"></li>
+                  <li><%= link_to "Sair", logout_path %></li>
               <% end %>
-              <li><%= link_to @current_user.name, edit_user_path(@current_user) %>
-              <li class="divider"></li>
-              <li><%= link_to "Alterar senha", password_path %></li>
-              <li class="divider"></li>
-              <li><%= link_to "Sair", logout_path %></li>
             </ul><!-- /nav pull-right -->
           </div><!-- /div.nav-collapse -->
         </div>

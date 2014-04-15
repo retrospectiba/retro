@@ -4,7 +4,8 @@ defaults: &defaults
   reconnect: false
   database: retro
   username: root
-  password: root
+  password: m260886
+  socket: /Applications/MAMP/tmp/mysql/mysql.sock
 
 development:
   <<: *defaults

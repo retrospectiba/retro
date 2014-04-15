@@ -6,4 +6,8 @@ module UsersHelper
   def role_name(role)
     return ROLES[role.to_sym]
   end
+
+  def base_url
+    request.base_url
+  end
 end

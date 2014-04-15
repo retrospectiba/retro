@@ -38,7 +38,8 @@ RetroRails::Application.routes.draw do
   match "/password"          => "users#password"
   match "/password_update"   => "users#password_update"
 
-  match "/remember_password" => "remember_password#remember_password"
+  match "/remember_password"          => "remember_password#index"
+  match "/remember_password/remember" => "remember_password#remember_password"
 
   # Error 404 Handler
   match "*path" => "application#not_found"

@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :logged_at, :name, :team_id, :password, :password_confirmation, :forgot_passworrd_token, :role
+  attr_accessible :email, :logged_at, :name, :team_id, :password, :password_confirmation, :forgot_password_token, :role
 
   belongs_to :team
 
@@ -31,12 +31,12 @@ class User < ActiveRecord::Base
   end
 
   def generate_forgot_password_token
-     self.forgot_password_token = generate_digest_token
+    self.forgot_password_token = generate_digest_token
   end
 
   private
 
   def generate_digest_token
-    Digest.bubblebabble(SecureRandom.base64)
+    Digest::SHA1.hexdigest(SecureRandom.base64)
   end
 end
