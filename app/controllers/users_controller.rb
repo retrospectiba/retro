@@ -33,11 +33,19 @@ class UsersController < ApplicationController
 
   # GET /password
   def password
-    @user = User.where(forgot_password_token: params[:forgot_password_token]).first
+    if params[:forgot_password_token].present?
+      @user = User.where(forgot_password_token: params[:forgot_password_token]).first
+    else
+      @user = current_user
+    end
   end
 
   def password_update
-    @user = User.where(forgot_password_token: params[:user][:forgot_password_token]).first
+    if params[:forgot_password_token].present?
+      @user = User.where(forgot_password_token: params[:user][:forgot_password_token]).first
+    else
+      @user = current_user
+    end
     @user.password = User.md5(params[:user][:password])
     @user.password_confirmation = User.md5(params[:user][:password_confirmation])
 
