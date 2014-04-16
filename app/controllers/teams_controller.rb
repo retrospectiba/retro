@@ -41,7 +41,6 @@ class TeamsController < ApplicationController
 
   def update
     @team = Team.find(params[:id])
-    @team.update_attributes(params[:team])
     respond_to do |format|
       if @team.update_attributes(params[:team])
         format.html { redirect_to teams_path, notice: 'Seu time foi alterado!' }

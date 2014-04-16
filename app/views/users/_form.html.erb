@@ -34,6 +34,9 @@
       <label>Confirmação de Senha </label>
       <%= f.password_field :password_confirmation, placeholder:"Confirmação", class: "password_field" %>
     </li>
+
+    <%= f.hidden_field :role, value: "user" %>
+
     <li class="field">
       <%= f.submit "Salvar", class: "btn btn-primary btn-inverse" %>
     </li>
