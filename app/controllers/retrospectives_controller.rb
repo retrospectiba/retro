@@ -12,7 +12,8 @@ class RetrospectivesController < ApplicationController
     if @user.role == "admin"
       @retrospectives = Retrospective.order(:start_at)
     else
-      @retrospectives = Retrospective.where(team_id: @user.team_id).order(:start_at)
+      team = Team.where(user_id: @user.id).collect(&:id)
+      @retrospectives = Retrospective.where(team_id: team).order(:start_at)
     end
 
     @retrospective = Retrospective.new
