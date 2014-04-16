@@ -7,13 +7,13 @@ class RetrospectivesController < ApplicationController
   # GET /retrospectives.json
   def index
     @user = current_user
-    @teams = Team.order(:name)
 
     if @user.role == "admin"
       @retrospectives = Retrospective.order(:start_at)
+      @teams = Team.order(:name)
     else
-      team = Team.where(user_id: @user.id).collect(&:id)
-      @retrospectives = Retrospective.where(team_id: team).order(:start_at)
+      @teams = Team.where(user_id: @user.id)
+      @retrospectives = Retrospective.where(team_id: @teams.collect(&:id)).order(:start_at)
     end
 
     @retrospective = Retrospective.new
