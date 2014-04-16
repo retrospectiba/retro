@@ -73,13 +73,9 @@ class UsersController < ApplicationController
   def update
     @teams = Team.order(:name)
     @user = User.find(params[:id])
-    @user.name = params[:user][:name]
-    @user.email = params[:user][:email]
-    @user.team_id = params[:user][:team_id]
-    @user.role = params[:user][:role]
 
     respond_to do |format|
-      if @user.save
+      if @user.update_attributes(params[:user])
         format.html { redirect_to "/retrospectives", notice: 'Seu dados foram atualizados!' }
       else
         format.html { render action: "edit" }

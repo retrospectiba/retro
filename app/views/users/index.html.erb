@@ -22,7 +22,7 @@
             <td><%= link_to user.name, edit_user_path(user.id) %></td>
             <td><%= user.email %></td>
             <td><%= user.team.name %></td>
-            <td><%= role_name(user.role) %></td>
+            <td><%= user.role ? role_name(user.role) : "" %></td>
           </tr>
         <% end %>
       </tbody>
