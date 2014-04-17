@@ -1,9 +1,9 @@
-- Incluir lista de projetos na criação de usuário (frontend task) - DONE
+- Incluir lista de times na criação de usuário (frontend task) - DONE
 - Lembrar senha - DONE
 - Incluir mecanismo de fechar e abrir retro.
 - Não poder alterar retro fechada
 - Ocultar os bads e goods dos outros usuários enquanto a retro estiver fechada
 - Liberar bads e goods quando a retro tiver fechada
 - Incluir funcionalidade para registrar as USs do sprint (não precisa integrar com o rally)
-- definir objetivo para o próximo sprint
+- Definir objetivo para o próximo sprint - DONE
 - Setar usuario como admin via tela - DONE
