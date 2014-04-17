@@ -28,7 +28,8 @@
       <% if @retrospective.start_at.present? %>
         <b>Início</b> <em><%= @retrospective.start_at.strftime("%d/%m/%Y") %></em>
         <b>Término</b> <em><%= @retrospective.finish_at.strftime("%d/%m/%Y") %></em>
-        <b> | Time</b> <em><%= @retrospective.team.name %></em>
+        <b> | Time</b> <em><%= @retrospective.team.name %></em> <br>
+        <b>Objetivo do sprint: </b> <em><%= @retrospective.target.upcase %></em>
       <% end %>
     </div>
   </div><!--/div:span5 -->
