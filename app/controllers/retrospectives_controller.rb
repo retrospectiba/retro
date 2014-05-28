@@ -13,7 +13,7 @@ class RetrospectivesController < ApplicationController
       @teams = Team.order(:name)
     else
       @teams = Team.where(user_id: @user.id)
-      @retrospectives = Retrospective.where(team_id: @teams.collect(&:id)).order(:start_at)
+      @retrospectives = Retrospective.where(team_id: @user.team_id).order(:start_at)
     end
 
     @retrospective = Retrospective.new
