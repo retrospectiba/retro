@@ -1,28 +1,56 @@
-<%= form_for @user do |u| %>
-    <div id="newUser" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<%= form_for @new_user do |u| %>
+  <div id="newUser" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
       <h2>Novo Usuário</h2>
     </div>
     <div class="modal-body">
-        <% if @user.errors.any? %>
-          <div class="alert alert-error">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            <h4>Atenção!</h4>
-            Os seguintes erros foram encontrados:
-            <ul>
-              <% @user.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
-        <div class="field">
-          <%= u.text_field :name, class: "span5", value: "" %>
+    <% if @new_user.errors.any? %>
+      <div class="alert alert-error">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <h4>Atenção!</h4>Os seguintes erros foram encontrados:
+          <ul>
+          <% @new_user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+      </div>
+    <% end %>
+      <div class="field">
+        <span class="span3">Nome</span>
+      </div>
+      <div class="field">
+        <div class="span3 input-append">
+          <%= u.text_field :name, class: "span5" %>
         </div>
+      </div>
+      <div class="field">
+        <span class="span3">Email</span>
+      </div>
+      <div class="field">
+        <div class="span3 input-append">
+          <%= u.text_field :email, class: "span5" %>
+        </div>
+      </div>
+      <div class="field">
+        <span class="span3">Time</span>
+      </div>
+      <div class="field">
+        <div class="span3 input-append">
+          <%= u.collection_select(:team_id, @teams, :id, :name) %>
+        </div>
+      </div>
+      <div class="field">
+        <span class="span3">Senha</span>
+      </div>
+      <div class="field">
+        <div class="span3 input-append">
+          <%= u.password_field :password, class: "password_field" %>
+        </div>
+      </div>
     </div>
     <div class="modal-footer">
-      <%= f.submit "Salvar", class: "btn btn-primary" %>
+      <%= u.submit "Salvar", class: "btn btn-primary" %>
     </div>
   </div>
 <% end %>

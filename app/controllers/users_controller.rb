@@ -6,18 +6,11 @@ class UsersController < ApplicationController
 
   def index
     @users = User.order(:team_id, :name, :role)
-    @user = User.new
+    @teams = Team.order(:name)
+    @new_user = User.new
     respond_to do |format|
       format.html # index.html.erb
     end
-  end
-
-  # GET /users/new
-  # GET /users/new.json
-  def new
-    @user = User.new
-    @teams = Team.order(:name)
-    render layout: false
   end
 
   # GET /users/1/edit
@@ -67,13 +60,14 @@ class UsersController < ApplicationController
   def create
     @teams = Team.order(:name)
     @user = User.new(params[:user])
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to root_url, alert: 'Sua conta foi criada!' }
-      else
-        format.html { render action: "new", layout: false }
-      end
+
+    if @user.save
+      flash[:notice] = 'Seu usuário foi criado com sucesso!'
+    else
+      flash[:error] = "Less!! #{@user.errors.full_messages}"
     end
+
+    redirect_to users_path
   end
 
   # PUT /users/1

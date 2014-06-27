@@ -12,26 +12,23 @@ class RetrospectivesController < ApplicationController
       @retrospectives = Retrospective.order(:start_at)
       @teams = Team.order(:name)
     else
-      @teams = Team.where(user_id: @user.id)
       @retrospectives = Retrospective.where(team_id: @user.team_id).order(:start_at)
+      @teams = Team.where(user_id: @user.id)
     end
 
     @retrospective = Retrospective.new
-    respond_to do |format|
-      format.html # index.html.erb
-    end
   end
 
   def create
-    @retrospective = Retrospective.new(params[:retrospective])
+    retrospective = Retrospective.new(params[:retrospective])
 
-    if @retrospective.save
-      notice = 'Sua nova retro foi criada!'
+    if retrospective.save
+      flash[:notice] = 'Sua nova retro foi criada!'
     else
-      notice = 'LESSSS! Tente novamente.'
+      flash[:error] = retrospective.errors.full_messages
     end
 
-    redirect_to '/retrospectives', notice: notice
+    redirect_to retrospectives_path
   end
 
   def update

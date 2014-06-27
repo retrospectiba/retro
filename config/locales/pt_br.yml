@@ -10,11 +10,19 @@ pt_br:
   activerecord:
     errors:
       models:
+        retrospective:
+          attributes:
+            target:
+              blank: "não pode ser vazio"
         user:
           attributes:
+            name:
+              blank: "não pode ser vazio"
             team_id:
-              blank: "não pode ficar em branco"
+              blank: "não pode ser vazio"
             password:
+              blank: "bão pode ser vazio"
               too_short: "deve ter mais que 4 caracteres!"
             email:
               taken: "já cadastrado!"
+              blank: "não pode ser vazio"
