@@ -84,3 +84,4 @@ td.votes      { font-weight: bold; }
 .similar li .vote { width: 30px; display: inline-block; }
 .similar li .description { width: 77%; display: inline-block; vertical-align: top; }
 .similar li .description small { color: #333; }
+.retro_search input[type="submit"] { vertical-align: top; }

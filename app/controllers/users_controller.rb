@@ -13,6 +13,14 @@ class UsersController < ApplicationController
     end
   end
 
+  # GET /users/new
+  # GET /users/new.json
+  def new
+    @user = User.new
+    @teams = Team.order(:name)
+    render layout: false
+  end
+
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
@@ -63,11 +71,11 @@ class UsersController < ApplicationController
 
     if @user.save
       flash[:notice] = 'Seu usuário foi criado com sucesso!'
+      redirect_to root_path
     else
       flash[:error] = "Less!! #{@user.errors.full_messages}"
+      render action: "new", layout: false
     end
-
-    redirect_to users_path
   end
 
   # PUT /users/1
@@ -102,7 +110,7 @@ class UsersController < ApplicationController
   end
 
   def ensure_correct_user
-    raise TentandoSerEspertaoException  if !current_user.role == "admin" && session[:user_id].to_s != params[:id].to_s
+    raise TentandoSerEspertaoException  if !current_user.admin && session[:user_id].to_s != params[:id].to_s
   end
 
   class TentandoSerEspertaoException < StandardError

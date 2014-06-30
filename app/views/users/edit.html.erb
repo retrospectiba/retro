@@ -36,7 +36,7 @@
           <label>Time </label>
           <%= f.collection_select(:team_id, @teams, :id, :name) %>
         </li>
-        <% if @current_user.role == "admin" %>
+        <% if @current_user.admin? %>
           <li class="field">
             <label>Papel </label>
             <%= select_tag("user[role]", options_for_select([ ['Selecione um nível', ''], ['Administrador', 'admin'], ['Líder de Time', 'team_leader'], ['PO', 'po'], ['Usuário', 'user'], ['CT', 'ct'], ['QA', 'qa'], ['Analista', 'analist'] ], @user.role))%>

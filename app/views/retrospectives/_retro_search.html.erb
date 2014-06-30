@@ -1,0 +1,9 @@
+<div class="retro_search">
+  <%= form_tag(retrospectives_path, method: :get) do  %>
+    <%= text_field_tag :retro_name, params[:retro_name], class: 'span3' %>
+    <% if @current_user.admin? %>
+      <%= select_tag "team_id", options_from_collection_for_select(@teams, "id", "name", params[:team_id]), :prompt => 'Todos' %>
+    <% end %>
+    <%= submit_tag "Filtrar", class: "btn btn-primary btn-inverse" %>
+  <% end %>
+</div>

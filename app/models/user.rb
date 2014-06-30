@@ -9,7 +9,6 @@ class User < ActiveRecord::Base
   validates :name,     :presence =>true
   validates :team_id,  :presence =>true
   validates :password, :presence =>true, :length => { :minimum => 5, :maximum => 40 }, :confirmation => true
-  validates_confirmation_of :password
 
   USER_PROJECTS = ["Core", "WebStore", "Aplicativos"]
 
@@ -34,9 +33,14 @@ class User < ActiveRecord::Base
     self.forgot_password_token = generate_digest_token
   end
 
+  def admin?
+    self.role == 'admin'
+  end
+
   private
 
   def generate_digest_token
     Digest::SHA1.hexdigest(SecureRandom.base64)
   end
+
 end

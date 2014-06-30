@@ -8,13 +8,16 @@ class RetrospectivesController < ApplicationController
   def index
     @user = current_user
 
-    if @user.role == "admin"
-      @retrospectives = Retrospective.order(:start_at)
-      @teams = Team.order(:name)
-    else
-      @retrospectives = Retrospective.where(team_id: @user.team_id).order(:start_at)
-      @teams = Team.where(user_id: @user.id)
-    end
+    conditions = ""
+
+    conditions += "team_id =  #{@user.team_id} "            if !@user.admin?
+    conditions += "team_id =  #{params[:team_id]} "         if !params[:team_id].blank?
+    conditions += " AND "                                   if !conditions.blank? && !params[:retro_name].blank?
+    conditions += "name    like '%#{params[:retro_name]}%'" if !params[:retro_name].blank?
+
+    @teams = Team.find(:all, conditions: !@user.admin? ? "user_id = #{@user.id}" : "", order: :name)
+
+    @retrospectives = Retrospective.find(:all, conditions: conditions, order: :start_at)
 
     @retrospective = Retrospective.new
   end

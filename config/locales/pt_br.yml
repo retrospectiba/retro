@@ -23,6 +23,7 @@ pt_br:
             password:
               blank: "bão pode ser vazio"
               too_short: "deve ter mais que 4 caracteres!"
+              confirmation: "deve ser igual a confirmação!"
             email:
               taken: "já cadastrado!"
               blank: "não pode ser vazio"

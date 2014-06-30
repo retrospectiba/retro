@@ -28,18 +28,18 @@
               <h2>Não esqueça o que rolou na última retro!</h1>
               <form class="form-inline" action="/signin" method="POST">
                 <legend></legend>
-                <% if alert %>
+                <% if flash[:notice] %>
                   <div class="alert alert-info">
                     <button type="button" class="close" data-dismiss="alert">x</button>
                     <h4>Obrigado!</h4>
-                    <%=alert%>
+                    <%=flash[:notice]%>
                   </div>
                 <% end %>
-                <% if notice %>
+                <% if flash[:error] %>
                   <div class="alert alert-error">
                     <button type="button" class="close" data-dismiss="alert">x</button>
                     <h4>Ooops!</h4>
-                    <%=notice%>
+                    <%=flash[:error]%>
                   </div>
                 <% end %>
                 <div class="control-group">
