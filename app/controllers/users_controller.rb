@@ -42,7 +42,7 @@ class UsersController < ApplicationController
   end
 
   def password_update
-    if params[:forgot_password_token].present?
+    if params[:user][:forgot_password_token].present?
       @user = User.where(forgot_password_token: params[:user][:forgot_password_token]).first
     else
       @user = current_user
