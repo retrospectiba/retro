@@ -66,12 +66,12 @@ RetroRails::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :user_name => 'ibamailer',
-    :password => 'p@ssw0rd!',
-    :address => 'smtp.gmail.com',
+    :user_name => 'iba',
+    :password => 'Wl1O1pWysCjxwnzTRT4I',
+    :address => 'smtp.iba.com.br',
     :domain => 'iba.com.br',
-    :port => '587',
-    :authentication => :plain,
-    :enable_starttls_auto => true
+    :port => '2525',
+    :authentication => :login,
+    :enable_starttls_auto => false
   }
 end
