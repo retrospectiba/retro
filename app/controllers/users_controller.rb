@@ -110,7 +110,7 @@ class UsersController < ApplicationController
   end
 
   def ensure_correct_user
-    raise TentandoSerEspertaoException  if !current_user.admin && session[:user_id].to_s != params[:id].to_s
+    raise TentandoSerEspertaoException  if !current_user.admin? && session[:user_id].to_s != params[:id].to_s
   end
 
   class TentandoSerEspertaoException < StandardError
