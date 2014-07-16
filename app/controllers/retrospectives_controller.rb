@@ -17,7 +17,7 @@ class RetrospectivesController < ApplicationController
 
     @teams = Team.find(:all, conditions: !@user.admin? ? "user_id = #{@user.id}" : "", order: :name)
 
-    @retrospectives = Retrospective.find(:all, conditions: conditions, order: :start_at)
+    @retrospectives = Retrospective.find(:all, conditions: conditions, order: "start_at desc")
 
     @retrospective = Retrospective.new
   end
