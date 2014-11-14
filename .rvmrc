@@ -1,2 +1,1 @@
-rvm use --create 1.9.3@retro
-
+rvm use --create 1.9.3-p547@retro
